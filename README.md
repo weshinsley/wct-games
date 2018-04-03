@@ -20,7 +20,7 @@ It's ok, you don't have to thank me.
 The games run fairly well in DosBox, although not quite as pixel-smooth as they were on native hardware, probably due to the nature
 of emulation, and maybe the artefacts of scaling the original screen resolution. But, they are close enough. 
 
-* Install DosBox [https://www.dosbox.com/download.php?main=1]
+* Install [DosBox](https://www.dosbox.com/download.php?main=1)
 * Experiences may vary; the settings I use on a Lenovo Z580 are the defaults, except for:-
 ** fullscreen=true
 ** fulldouble=false - this is indeed very slow for me.
@@ -67,14 +67,14 @@ who did some very good programming and gave us a lot of help getting started. I 
 
 ## The Games
 
-* ''Oh Wessy'' - Tom's variant of Oh Mummy
-* ''Shooting Cheddery'' - in which you shoot random objects with mini-cheddars.
-* ''Shooting Chundery'' - in which you shoot drops of acid vom that are falling from outer space.
-* ''Slapping Slappery'' - in which you slap things scrolling up at you while driving various vehicles.
-* ''Shooting Shrubbery'' - a multi-screen adventure game.
-* ''Shooting Ribenaberry'' - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
-* ''Shooting Teletubbery'' - in which you shoot various character and accumulate huge scores.
-* ''Smudgelet's Maze'' - a big maze escape game for up to 2-players, to run on an Amstrad 8086.
-* ''Smudgelet's Maze 2000'' - a multi-player scrolling version of Smudgelet's Maze with music that speeds up.
-* ''Tom's Day Out'' - a lawn-mowing game inspired by Hovver Bovver.
-* ''Twittris'' - a Tetris clone for up to 3 players.
+* **Oh Wessy** - Tom's variant of Oh Mummy
+* **Shooting Cheddery** - in which you shoot random objects with mini-cheddars.
+* **Shooting Chundery** - in which you shoot drops of acid vom that are falling from outer space.
+* **Slapping Slappery** - in which you slap things scrolling up at you while driving various vehicles.
+* **Shooting Shrubbery** - a multi-screen adventure game.
+* **Shooting Ribenaberry** - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
+* **Shooting Teletubbery** - in which you shoot various character and accumulate huge scores.
+* **Smudgelet's Maze** - a big maze escape game for up to 2-players, to run on an Amstrad 8086.
+* **Smudgelet's Maze 2000** - a multi-player scrolling version of Smudgelet's Maze with dramatic music.
+* **Tom's Day Out** - a lawn-mowing game inspired by Hovver Bovver.
+* **Twittris** - a Tetris clone for up to 3 players.
