@@ -1,0 +1,10 @@
+Tom
+5000
+Wes
+2500
+Chris
+2000
+Andy
+1500
+Gladys
+1000

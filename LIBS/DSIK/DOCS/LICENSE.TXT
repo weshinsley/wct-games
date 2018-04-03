@@ -1,0 +1,22 @@
+
+            DSIK LICENSE AGREEMENT AND COPYRIGHT NOTICE
+            ===========================================
+
+    The Digital Sound Interface Kit (DSIK) is protected by copyright laws,
+    making any copies of it is considered a violation. You may take copies
+    for archival purposes to protect your investment. You may not sell or
+    give away this product.
+
+    This license guarantees you the right to use DSIK in your own software.
+    You may not distribute any of the source code or object libraries
+    included in the package, except for the object modules linked into
+    your software.
+
+    DSIK is provided as is and the author disclaims all other warranties
+    including but not limited to implied warranties of fitness for a
+    particular purpose.
+
+    In no event shall the author be liable for any loss of profit or
+    any other commercial damage, including but not limited to special,
+    incidental, consequential or other damages.
+

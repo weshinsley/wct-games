@@ -1,0 +1,75 @@
+README FILE:
+============
+
+TESTING THE SYSTEM:
+===================
+
+First, you need to execute the SETUP.EXE program to configure. It will
+ask you the hardware parameters of your soundcard device.
+After, you can play music module files using the standalone music player
+program PLAY.EXE using the following command line syntax:
+
+        PLAY file[.dsm]
+
+There are a couple of DSM module files included in the package that you
+can play. Also, you can use the CONV.EXE utility to convert other module
+file formats like MODs, STMs, 669s, S3Ms and MTMs to the DSIK's own module
+format, which uses the file extension DSM.
+
+
+BUILDING THE EXAMPLES:
+=====================
+
+You need to have Borland Pascal 7.0 installed on your system. The makefile
+included in the package have all the information to build the example
+programs. However, you may need to modify this file. You need specify
+the directory of the binary, includes and unit files of Borland Pascal
+changing the following equates defined in the EXAMPLES.MAK file:
+
+BIN = c:\bp\bin                 # Borland Pascal binary directory
+INC = c:\bp\include             # Borland Pascal include directory
+LIB = c:\bp\units               # Borland Pascal units directory
+
+After the EXAMPLES.MAK was modified, execute the MAKE utility to build
+all the examples typing at the DOS prompt:
+
+        C:>MAKE -f EXAMPLES.MAK
+
+If you want to build the examples from the Borland Pascal IDE, simply
+load the example source files and it will ensure to include the required
+unit files (SOUND.TPU, LOAD.TPU and TS.TPU).
+
+
+LIST OF FILES:
+=============
+
+Here is the list of files included in the package:
+
+readme.txt      - Readme text file.
+license.txt     - DSIK License text file.
+manual.txt      - DSIK User's Manual text file.
+
+load.pas        - DSIK loading routines source code.
+sound.pas       - DSIK interface text file.
+sound.tpu       - DSIK sound system unit file.
+   
+examples.mak    - Makefile for all the example sources.
+exam1.pas       - Example #1 source.
+exam2.pas       - Example #2 source.
+exam3.pas       - Example #3 source.
+setup.pas       - Setup program source.
+     
+ts.asm          - Timer Services ASM source.
+ts.pas          - Timer Services unit source file.
+ts.tpu          - Timer Services compiled unit file.
+
+play.exe        - DSIK Standalone Module Player.
+setup.exe       - DSIK Setup Program.
+conv.exe        - MOD/STM/669/S3M/MTM to DSM File Converter.
+
+*.dsm           - Example DSM Music Module Files.
+*.wav           - Example WAV Sample Files.
+
+readme.1st      - This file.
+
+      
