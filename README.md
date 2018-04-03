@@ -64,3 +64,17 @@ And one more:
 
 * MOUSERMW provided all the mouse clicking and icon routines. This was written by a school friend Rupert Wood, a year above us, 
 who did some very good programming and gave us a lot of help getting started. I wonder where he is now...
+
+## The Games
+
+* ''Oh Wessy'' - Tom's variant of Oh Mummy
+* ''Shooting Cheddery'' - in which you shoot random objects with mini-cheddars.
+* ''Shooting Chundery'' - in which you shoot drops of acid vom that are falling from outer space.
+* ''Slapping Slappery'' - in which you slap things scrolling up at you while driving various vehicles.
+* ''Shooting Shrubbery'' - a multi-screen adventure game.
+* ''Shooting Ribenaberry'' - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
+* ''Shooting Teletubbery'' - in which you shoot various character and accumulate huge scores.
+* ''Smudgelet's Maze'' - a big maze escape game for up to 2-players, to run on an Amstrad 8086.
+* ''Smudgelet's Maze 2000'' - a multi-player scrolling version of Smudgelet's Maze with music that speeds up.
+* ''Tom's Day Out'' - a lawn-mowing game inspired by Hovver Bovver.
+* ''Twittris'' - a Tetris clone for up to 3 players.
