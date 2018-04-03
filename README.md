@@ -22,15 +22,15 @@ of emulation, and maybe the artefacts of scaling the original screen resolution.
 
 * Install [DosBox](https://www.dosbox.com/download.php?main=1)
 * Experiences may vary; the settings I use on a Lenovo Z580 are the defaults, except for:-
-** fullscreen=true
-** fulldouble=false - this is indeed very slow for me.
-** output=surface
-** machine=svga_s3
-** core=dynamic - and then I adjust manually with Ctrl+F12
-** cputype=auto
-** cycles=40000
-** mount c c:\Files\DosBox
-** c:
+  * fullscreen=true
+  * fulldouble=false - this is indeed very slow for me.
+  * output=surface
+  * machine=svga_s3
+  * core=dynamic - and then I adjust manually with Ctrl+F12
+  * cputype=auto
+  * cycles=40000
+  * mount c c:\Files\DosBox
+  * c:
 
 ## Compilation
 
@@ -71,10 +71,11 @@ who did some very good programming and gave us a lot of help getting started. I 
 * **Shooting Cheddery** - in which you shoot random objects with mini-cheddars.
 * **Shooting Chundery** - in which you shoot drops of acid vom that are falling from outer space.
 * **Slapping Slappery** - in which you slap things scrolling up at you while driving various vehicles.
-* **Shooting Shrubbery** - a multi-screen adventure game.
+* **Shooting Shrubbery** - a multi-screen adventure game with Monty Python influences.
 * **Shooting Ribenaberry** - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
 * **Shooting Teletubbery** - in which you shoot various character and accumulate huge scores.
 * **Smudgelet's Maze** - a big maze escape game for up to 2-players, to run on an Amstrad 8086.
 * **Smudgelet's Maze 2000** - a multi-player scrolling version of Smudgelet's Maze with dramatic music.
 * **Tom's Day Out** - a lawn-mowing game inspired by Hovver Bovver.
 * **Twittris** - a Tetris clone for up to 3 players.
+
