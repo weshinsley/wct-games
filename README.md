@@ -44,25 +44,25 @@ to compile them, which is available these days by googling.
 
 ## External Libraries
 
-We used the Digital Sound Interface Kit (DSIK), (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. This was a 
+We used the Digital Sound Interface Kit (**DSIK**), (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. This was a 
 very cool library which supported 4-channel MODs in the shareware version, and 16-channel in the registered version. I don't know where
 Carlos is now on the internet, but there are places you can google to download the full package. The music for all games started out as a
-MOD file, and was converted into a DSM file for DSIK. You can convert it back again with OpenMPT https://openmpt.org/download if that's 
+MOD file, and was converted into a DSM file for DSIK. You can convert it back again with [OpenMPT](https://openmpt.org/download) if that's 
 the sort of thing you'd want to do.
 
 ## Our own Libraries
 
 Almost all of the other clever library stuff was written by Tom:-
 
-* TDGRAPH provides useful drawing routines for GUIs.
-* TDFONTS allows Pascal's BGI and CHR (graphics and font) files to be included as objects in an executable. 
-* TD_256 sets up the pretty mode 13h, (320x200 with 256 colours)
-* TD_PCX works with PCX files, which we started clipping graphics from, rather than objectising them.
-* TD_KEY sets up a proper keyboard handler for multiple keys at once.
+* **TDGRAPH** provides useful drawing routines for GUIs.
+* **TDFONTS** allows Pascal's BGI and CHR (graphics and font) files to be included as objects in an executable. 
+* **TD_256** sets up the pretty mode 13h, (320x200 with 256 colours)
+* **TD_PCX** works with PCX files, which we started clipping graphics from, rather than objectising them.
+* **TD_KEY** sets up a proper keyboard handler for multiple keys at once.
 
 And one more:
 
-* MOUSERMW provided all the mouse clicking and icon routines. This was written by a school friend Rupert Wood, a year above us, 
+* **MOUSERMW** provided all the mouse clicking and icon routines. This was written by a school friend Rupert Wood, a year above us, 
 who did some very good programming and gave us a lot of help getting started. I wonder where he is now...
 
 ## The Games
