@@ -2,23 +2,23 @@
 
 ## Introduction
 
-This curious archive, is a collection of games a couple of friends and I wrote in my mis-spent youth. They are 16-bit DOS games, written in Turbo 
+This curious archive, is a collection of games a couple of friends and I wrote in our mis-spent youth. They are 16-bit DOS games, written in Turbo 
 pascal, and assembler for 386 or earlier. The third member of the trio was Chris, who I don't think we coaxed to do any actual programming, but
 whose mini-cheddar eating habit (apparently) formed the plot-lines of these early games. In a time were computer games were forbidden from our
-school facilities, these games were generally personalised birthday presents for our mates, each one taking some habit, food preference or
+school facilities, these were generally personalised birthday presents for our mates, each one taking some habit, food preference or
 other observable features and extrapolating it to a dramatic and absurd extent.
 
-Windows XP I believe removed support for compiled Turbo Pascal executables, so DosBox is probably the best way. You might also be able to 
-get them running from a DOS boot disk, although I'm not sure whether modern audio chips will play nicely with that. 
-Anyway, for those who might enjoy a nostalgic and somewhat bizarre trip into my teenage mind, here are the games, complete with source code that
-still compiles in Turbo Pascal. 
+Windows XP I believe removed support for executables like these, so DosBox is probably the best way. You might also be able to 
+get them running from a DOS boot disk, although I'm not sure whether modern audio chips will emulate old Soundblaster cards in the way these
+games need. Anyway, for those who might enjoy a nostalgic and somewhat bizarre trip into our teenage minds, here are the games, complete with 
+source code that appears to still compile in Turbo Pascal. 
 
 It's ok, you don't have to thank me.
 
 ## Running them
 
 The games run fairly well in DosBox, although not quite as pixel-smooth as they were on native hardware, probably due to the nature
-of emulation, and maybe the artefacts of scaling the original screen resolution. But, they are close enough. 
+of emulation, and maybe the artefacts of scaling the original screen resolution. But, they are close enough. (for what?)
 
 * Install [DosBox](https://www.dosbox.com/download.php?main=1)
 * Experiences may vary; the settings I use on a Lenovo Z580 are the defaults, except for:-
@@ -32,10 +32,10 @@ of emulation, and maybe the artefacts of scaling the original screen resolution.
   * mount c c:\Files\DosBox
   * c:
 
-## Compilation
+## Compiling (if you want)
 
 All the games are compiled, and you can run the EXEs in each folder. If you are anxious to compile them yourself, you'll need Turbo Pascal 7 
-to compile them, which is available these days by googling. 
+which is available these days by googling. 
 * Run the extended version (ie, BIN\TPX.EXE, not BIN\TURBO.EXE), as these games need more than 640k to compile. 
 * File, Change Directory, to the SRC folder of the game (or library) you want to compile.
 * Options, Open the Project Preferences (.TP) file, to set the paths, includes, and compiler options.
@@ -73,9 +73,9 @@ who did some very good programming and gave us a lot of help getting started. I 
 * **Slapping Slappery** - in which you slap things scrolling up at you while driving various vehicles.
 * **Shooting Shrubbery** - a multi-screen adventure game with Monty Python influences.
 * **Shooting Ribenaberry** - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
-* **Shooting Teletubbery** - in which you shoot various character and accumulate huge scores.
-* **Smudgelet's Maze** - a big maze escape game for up to 2-players, to run on an Amstrad 8086.
-* **Smudgelet's Maze 2000** - a multi-player scrolling version of Smudgelet's Maze with dramatic music.
+* **Shooting Teletubbery** - in which you shoot various characters and accumulate huge scores.
+* **Smudgelet's Maze** - a big-maze escape game for up to 2-players, to run on an Amstrad 8086.
+* **Smudgelet's Maze 2000** - a scrolling version of Smudgelet's Maze with dramatic music for up to 6 players theoretically.
 * **Tom's Day Out** - a lawn-mowing game inspired by Hovver Bovver.
 * **Twittris** - a Tetris clone for up to 3 players.
 
