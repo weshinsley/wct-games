@@ -1,3 +1,5 @@
 *.bak
 *.dsk
 *.psm
+sc1-ched/HITABLE.DAT
+twittris/TWIT.HI

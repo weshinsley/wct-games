@@ -3,8 +3,8 @@ program SM2;
 uses crt,dos,sound,load,td_256,td_pcx,newmaze,td_key;
 
 const
-  AUDIO = '..\AUDIO\';
-  GFX = '..\GFX\';
+  AUDIO = 'AUDIO\';
+  GFX = 'GFX\';
 
 var Font : array[33..126] of pointer;
   Height,Width : array[33..126] of byte;
