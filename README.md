@@ -67,15 +67,15 @@ who did some very good programming and gave us a lot of help getting started. I 
 
 ## The Games
 
-* **Oh Wessy** - Tom's variant of Oh Mummy
+* [**Oh Wessy**](oh-wessy/) - Tom's variant of Oh Mummy
 * **Shooting Cheddery** - in which you shoot random objects with mini-cheddars.
 * **Shooting Chundery** - in which you shoot drops of acid vom that are falling from outer space.
 * **Slapping Slappery** - in which you slap things scrolling up at you while driving various vehicles.
 * **Shooting Shrubbery** - a multi-screen adventure game with Monty Python influences.
 * **Shooting Ribenaberry** - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
 * **Shooting Teletubbery** - in which you shoot various characters and accumulate huge scores.
-* **Smudgelet's Maze** - a big-maze escape game for up to 2-players, to run on an Amstrad 8086.
-* **Smudgelet's Maze 2000** - a scrolling version of Smudgelet's Maze with dramatic music for up to 6 players theoretically.
+* [**Smudgelet's Maze**](s-maze/) - a big-maze escape game for up to 2-players, to run on an Amstrad 8086.
+* [**Smudgelet's Maze 2000**](s-maze2k/) - a scrolling version of Smudgelet's Maze with dramatic music for up to 6 players theoretically.
 * **Tom's Day Out** - a lawn-mowing game inspired by Hovver Bovver.
 * **Twittris** - a Tetris clone for up to 3 players.
 
