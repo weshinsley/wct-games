@@ -1,13 +1,12 @@
 ## Oh Wessy
 
-|             |                       |
-|-------------|-----------------------|
-| Game        | Oh Wessy              |
-| Author      | Tom                   |
-| Date        | August 1996           |
-| Reason      | Wes's 18th birthday   |
-| Inspired by | Oh Mummy              |
-|-------------|-----------------------|
+|                 |                       |
+|-----------------|-----------------------|
+| **Game**        | Oh Wessy              |
+| **Author**      | Tom                   |
+| **Date**        | August 1996           |
+| **Reason**      | Wes's 18th birthday   |
+| **Inspired by** | Oh Mummy              |
 
 # Quick Plot
 

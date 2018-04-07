@@ -2,11 +2,10 @@
 
 |             |                       |
 |-------------|-----------------------|
-| Game        | Smudgelet's Maze 2000 |
-| Author      | Wes                   |
-| Date        | April 2000            |
-| Reason      | Mark's 18th birthday  |
-|-------------|-----------------------|
+| **Game**    | Smudgelet's Maze 2000 |
+| **Author**  | Wes                   |
+| **Date**    | April 2000            |
+| **Reason**  | Mark's 18th birthday  |
 
 ## Introduction
 

@@ -1,13 +1,12 @@
 # Smudgelet's Maze
 
-|             |                       |
-|-------------|-----------------------|
-| Game        | Smudgelet's Maze      |
-| Author      | Wes                   |
-| Date        | April 1996            |
-| Reason      | Mark's 14th birthday  |
-|    and      | Writing for an 8086   |
-|-------------|-----------------------|
+|             |                         |
+|-------------|-------------------------|
+| **Game**    | Smudgelet's Maze        |
+| **Author**  | Wes                     |
+| **Date**    | April 1996              |
+| **Reason**  | Mark's 14th birthday    |
+|             | (and an 8086 challenge) |
 
 ## Introduction
 
