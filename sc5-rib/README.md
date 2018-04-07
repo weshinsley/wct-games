@@ -80,7 +80,9 @@ to aid your progress. Good luck commando.
 ## Audio
 
 Epic music in DSIK - and also some sound effects produced by Wes and his
-flatmates in London. DosBox
+flatmates in London. DosBox wires up the sound card quite 
+well. Run SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. 
+(The defaults)
 
 ## The Level Editor
 
