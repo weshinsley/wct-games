@@ -25,25 +25,27 @@ escaped a similar ribena based coma, publicised in The Cheddar, June
 1996. Your weapons are the two most suited, and technologically fine
 tuned devices in the world, precision made for this exact mission.
 
-``$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
-``$            $               $                                     $``
-``$       XX   $ W-C-T         $    An adjustably bendably banana    $``
-``$        XX  $ International $ capable of springing a spherical    $``
-``$        XX  $ Bendable      $ object to a speed of over twenty    $``
-``$       XX   $ Banana        $ metres per second  Geometrically    $``
-``$     XXX    $ Liberation    $ exactified to absolute precision    $``
-``$  XXXX      $ Enforcer      $ for comatosed fruity liberations    $``
-``$            $               $                                     $``
-``$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$``
-``$            $               $                                     $``
-``$    OOOO    $ Spherical     $    Incredibly bouncy:- free from    $``
-``$  OOOOOOOO  $ Cheddar       $ all forms of friction, due to an    $``
-``$  OOOOOOOO  $ With          $ amazing new invention known as a    $``
-``$  OOOOOOOO  $ Industrial    $ Bernoulli Enhancement Neurobrain    $``
-``$  OOOOOOOO  $ Steel         $ (BEN) - armed with a small shock    $``
-``$    OOOO    $ Housing       $ device for waking fruits in coma    $``
-``$            $               $                                     $``
-``$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$``
+```
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$            $               $                                     $
+$       XX   $ W-C-T         $    An adjustably bendably banana    $
+$        XX  $ International $ capable of springing a spherical    $
+$        XX  $ Bendable      $ object to a speed of over twenty    $
+$       XX   $ Banana        $ metres per second  Geometrically    $
+$     XXX    $ Liberation    $ exactified to absolute precision    $
+$  XXXX      $ Enforcer      $ for comatosed fruity liberations    $
+$            $               $                                     $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+$            $               $                                     $
+$    OOOO    $ Spherical     $    Incredibly bouncy:- free from    $
+$  OOOOOOOO  $ Cheddar       $ all forms of friction, due to an    $
+$  OOOOOOOO  $ With          $ amazing new invention known as a    $
+$  OOOOOOOO  $ Industrial    $ Bernoulli Enhancement Neurobrain    $
+$  OOOOOOOO  $ Steel         $ (BEN) - armed with a small shock    $
+$    OOOO    $ Housing       $ device for waking fruits in coma    $
+$            $               $                                     $
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+```
 
 So.. you, Ben have been launched to Milton Keynes, observing all the
 necessary health regulations, to liberate the berries, with your kit
