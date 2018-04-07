@@ -1,9 +1,9 @@
-| Oh Wessy |          
-|----------|
-| Written by Tom, August 1996, for Wes's 18th birthday. Inspired by Oh Mummy |
-| on various 8-bit formats. |
+# Oh Wessy  
 
-**Quick Plot**  
+Written by Tom, August 1996, for Wes's 18th birthday. Inspired by Oh Mummy
+on various 8-bit formats.
+
+## Quick Plot
 
 You control the peroxide-blonde Wes around grid-shaped tomb, looking
 for a mummy and a key to escape, while being chased by little monsters.

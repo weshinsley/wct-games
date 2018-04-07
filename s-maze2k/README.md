@@ -1,18 +1,11 @@
 # Smudgelet's Maze 2000
 
-|             |                       |
-|-------------|-----------------------|
-| **Game**    | Smudgelet's Maze 2000 |
-| **Author**  | Wes                   |
-| **Date**    | April 2000            |
-| **Reason**  | Mark's 18th birthday  |
-
-## Introduction
-
-Mark the Smudgelet was now 4 years older, had grown considerably taller 
-than me, and had a computer with colour and sound. I thought I'd
-try a scrolling maze game for lots of players, and turn the original
-speaker bleeping tune into something more epic...
+Wes wrote this (with Tom's libraries and DSIK) for Mark's 18th birthday,
+four years after the original Smudgelet's Maze, by which time computers
+(and Marks' especially), had progressed a little bit, as had our skills
+with graphics and music. Mark the "Smudgelet" was still Chris's youngest 
+brother, but now 4 years older and considerably taller than me, so we
+made an epic rewrite to welcome him to that mature age.
 
 ## The Bizarre Plot
 

@@ -1,11 +1,12 @@
 {$r-} { Increases speed a marginal amount }
 unit NewMaze;
-  interface
+
+interface
   uses Crt,Sound;
 
-   var xMax,yMax,SMax : integer;
-       NoWalls : integer;
-   type
+  var xMax,yMax,SMax : integer;
+      NoWalls : integer;
+  type
     tMap = record
       Data : array[0..81, 0..61, 1..6] of byte;
       xEntrance, yEntrance : Byte;
@@ -22,7 +23,7 @@ unit NewMaze;
 
   procedure Create(x,y : integer);
 
-  implementation
+implementation
 
 { Generates the map }
 procedure GenerateMap(var Map : tMap);
@@ -32,22 +33,22 @@ var Seeds : array[1..2270] of tSeed;
 function NoSeeds : Boolean;
 var i : Word;
     FoundSeeds : Boolean;
-  begin
-    FoundSeeds := False;
-    for i := 1 to sMax do begin
-      if Seeds[i].Valid then FoundSeeds :=True;
-    end;
-    NoSeeds := not FoundSeeds;
+begin
+  FoundSeeds := False;
+  for i := 1 to sMax do begin
+    if Seeds[i].Valid then FoundSeeds :=True;
   end;
+  NoSeeds := not FoundSeeds;
+end;
 
 { "Plant" a seed }
 procedure AddSeed(x, y, Dir : Byte);
 var i : Word;
 begin
   i := 0;
-    repeat
-      Inc(i);
-    until (i = sMax) or not Seeds[i].Valid;
+  repeat
+    Inc(i);
+  until (i = sMax) or not Seeds[i].Valid;
   if Seeds[i].Valid then begin
     WriteLn('Error: Out of seed space!');
     Halt;
@@ -62,11 +63,11 @@ end;
 { "Sprout" a seed }
 procedure Sprout;
 var i : Word;
-  begin
-    repeat
-      i := Random(sMax) + 1;
-    until Seeds[i].Valid;
-    with Seeds[i] do begin
+begin
+  repeat
+    i := Random(sMax) + 1;
+  until Seeds[i].Valid;
+  with Seeds[i] do begin
     case Dir of
       0: begin { up }
         if Map.Data[x, y - 2,1]=0 then
@@ -180,20 +181,20 @@ end;
 procedure Create(x,y : integer);
   var i,j,k : word;
       F : text;
-  begin
-    repeat
-      Randomize;
-      NoWalls:=0;
-      XMax:=x;
-      YMax:=y;
-      sMax := (xMax - 3) * (yMax - 3) div 2;
-      GenerateMap(Map);
-      dsmpoll;
-    until NoWalls<(X*y);
+begin
+  repeat
+    Randomize;
+    NoWalls:=0;
+    XMax:=x;
+    YMax:=y;
+    sMax := (xMax - 3) * (yMax - 3) div 2;
+    GenerateMap(Map);
     dsmpoll;
-    for i:=2 to 6 do
-      for j:=0 to 81 do
-        for k:=0 to 61 do
-          Map.Data[j,k,i]:=Map.Data[j,k,1];
+  until NoWalls<(X*y);
+  dsmpoll;
+  for i:=2 to 6 do
+    for j:=0 to 81 do
+      for k:=0 to 61 do
+        Map.Data[j,k,i]:=Map.Data[j,k,1];
   end;
 end.

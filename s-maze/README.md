@@ -1,19 +1,15 @@
 # Smudgelet's Maze
 
-|             |                         |
-|-------------|-------------------------|
-| **Game**    | Smudgelet's Maze        |
-| **Author**  | Wes                     |
-| **Date**    | April 1996              |
-| **Reason**  | Mark's 14th birthday    |
-|             | (and an 8086 challenge) |
+Writte by Wes (with Tom's libraries and DSIK), for Mark's 14th birthday in
+April 1996. (Mark is Chris's youngest brother). Smudgelet was one of many 
+mostly affectionate nicknames for Chris's youngest brother Mark, the benefactor 
+of this game. 
 
-## Introduction
+## The Plot
 
-Smudgelet was one of many mostly affectionate nicknames for Chris's 
-youngest brother Mark, the benefactor of this game. It's a simple
-maze game where you run around and eat stuff in a time limit, possibly
-racing a friend, while the pc speaker beeps irritatingly at you. It 
+You try to escape from a maze while eating stuff in 
+a time limit, possibly racing a friend, and possibly not going back on
+your trail, while the pc speaker beeps irritatingly at you. It 
 surprisingly worked decently on the Amstrad 8086 Mark had at the time.
 
 ## Game Types
