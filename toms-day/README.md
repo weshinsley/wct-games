@@ -27,7 +27,8 @@ Hmm.
 
 * Run DosBox
 * cd toms-day
-* TDA  for the game
+* SETUP to configure sound
+* TDA for the game
 * TDALEV  for the level editor
 ## Compiling
 

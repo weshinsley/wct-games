@@ -34,6 +34,7 @@ I/O Port 220, IRQ 7 and DMA 1. (The defaults)
 
 * Run DosBox.
 * cd sc6-tub
+* SETUP to configure sound
 * TUB
 
 ## Compiling
