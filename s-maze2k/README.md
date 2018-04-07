@@ -1,5 +1,6 @@
 # Smudgelet's Maze 2000
 
+|             |                       |
 |-------------|-----------------------|
 | Game        | Smudgelet's Maze 2000 |
 | Author      | Wes                   |

@@ -1,5 +1,6 @@
 # Smudgelet's Maze
 
+|             |                       |
 |-------------|-----------------------|
 | Game        | Smudgelet's Maze      |
 | Author      | Wes                   |
