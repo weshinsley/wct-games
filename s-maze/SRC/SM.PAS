@@ -43,52 +43,52 @@ const
   ESCAPE : integer = 5;
 
 procedure StartInterrupt;
-  begin
-    TSInit;
-    TSSetRate(100);
-    TSSetRoutine(DSMPoll);
-  end;
+begin
+  TSInit;
+  TSSetRate(100);
+  TSSetRoutine(DSMPoll);
+end;
 
 procedure ShutInterrupt;
-  begin
-    TSDone;
-    TSRestoreTime;
-  end;
+begin
+  TSDone;
+  TSRestoreTime;
+end;
 
 procedure SetupSoundFx;
   var L : byte;
-  begin
-    if not fxon then begin
-      if DSMLoadSetup(Card) then begin
-        writeln('Please run SETUP.EXE to configure.');
-        exit;
-      end;
-      if DSMInit(Card) then begin
-        writeln('Error Initializing the Sound System.');
-        exit;
-      end;
-      Samples[COMBUST]:=DsmLoadSample(audiodir+'COMBUST.WAV',0);
-      Samples[POWER]:=DsmLoadSample(audiodir+'POWER.WAV',0);
-      Samples[CRUNCH]:=DsmLoadSample(audiodir+'CRUNCH.WAV',0);
-      Samples[ESCAPE]:=DsmLoadSample(audiodir+'ESCAPE.WAV',0);
-      Samples[FLUSH]:=DsmLoadSample(audiodir+'FLUSH.WAV',0);
-      DSMSetupVoices(4,192);
+begin
+  if not fxon then begin
+    if DSMLoadSetup(Card) then begin
+      writeln('Please run SETUP.EXE to configure.');
+      exit;
     end;
-    fxon:=true;
-    StartInterrupt;
+    if DSMInit(Card) then begin
+      writeln('Error Initializing the Sound System.');
+      exit;
+    end;
+    Samples[COMBUST]:=DsmLoadSample(audiodir+'COMBUST.WAV',0);
+    Samples[POWER]:=DsmLoadSample(audiodir+'POWER.WAV',0);
+    Samples[CRUNCH]:=DsmLoadSample(audiodir+'CRUNCH.WAV',0);
+    Samples[ESCAPE]:=DsmLoadSample(audiodir+'ESCAPE.WAV',0);
+    Samples[FLUSH]:=DsmLoadSample(audiodir+'FLUSH.WAV',0);
+    DSMSetupVoices(4,192);
   end;
+  fxon:=true;
+  StartInterrupt;
+end;
 
 procedure ShutSoundFx;
   var L : byte;
-  begin
-    shutinterrupt;
-    if fxon then begin
-      for L:=1 to 5 do DSmFreeSample(Samples[L]);
-      dsmdone;
-    end;
-    fxon:=false;
-
+begin
+  shutinterrupt;
+  if fxon then begin
+    for L:=1 to 5 do DSmFreeSample(Samples[L]);
+    dsmdone;
   end;
+  fxon:=false;
+
+end;
 
 procedure SETRGB(NR,R,G,B: byte);
 begin
@@ -105,102 +105,102 @@ begin
 end;
 
 procedure playcols;
-  begin
-    repeat
-      storepalette[13,1]:=trunc(random(2))*30;
-      storepalette[13,2]:=trunc(random(2))*30;
-      storepalette[13,3]:=trunc(random(2))*30;
-      storepalette[9,1]:=trunc(random(2)*24);
-      storepalette[9,2]:=trunc(random(2)*24);
-      storepalette[9,3]:=trunc(random(2)*24);
-      storepalette[1,1]:=storepalette[9,1] div 2;
-      storepalette[1,2]:=storepalette[9,2] div 2;
-      storepalette[1,3]:=storepalette[9,3] div 2;
-    until (storepalette[13,1]+storepalette[13,2]+storepalette[13,3]>0) and
-      not ((storepalette[13,1]+storepalette[13,2]=0) and (storepalette[13,3]>0)) and
-      not (storepalette[1,1]+storepalette[1,2]+storepalette[1,3]=0);
-    for lb:=0 to 15 do setrgb(lb,storepalette[lb,1],storepalette[lb,2],storepalette[lb,3]);
-  end;
+begin
+  repeat
+    storepalette[13,1]:=trunc(random(2))*30;
+    storepalette[13,2]:=trunc(random(2))*30;
+    storepalette[13,3]:=trunc(random(2))*30;
+    storepalette[9,1]:=trunc(random(2)*24);
+    storepalette[9,2]:=trunc(random(2)*24);
+    storepalette[9,3]:=trunc(random(2)*24);
+    storepalette[1,1]:=storepalette[9,1] div 2;
+    storepalette[1,2]:=storepalette[9,2] div 2;
+    storepalette[1,3]:=storepalette[9,3] div 2;
+  until (storepalette[13,1]+storepalette[13,2]+storepalette[13,3]>0) and
+    not ((storepalette[13,1]+storepalette[13,2]=0) and (storepalette[13,3]>0)) and
+    not (storepalette[1,1]+storepalette[1,2]+storepalette[1,3]=0);
+  for lb:=0 to 15 do setrgb(lb,storepalette[lb,1],storepalette[lb,2],storepalette[lb,3]);
+end;
 
 procedure defaultpal;
-  begin
-    storepalette[0,1]:=$00; storepalette[0,2]:=$00; storepalette[0,3]:=$00;
-    storepalette[1,1]:=$00; storepalette[1,2]:=$00; storepalette[1,3]:=$FC;
-    storepalette[2,1]:=$24; storepalette[2,2]:=$FC; storepalette[2,3]:=$24;
-    storepalette[3,1]:=$00; storepalette[3,2]:=$FC; storepalette[3,3]:=$FC;
-    storepalette[4,1]:=$FC; storepalette[4,2]:=$14; storepalette[4,3]:=$14;
-    storepalette[5,1]:=$B0; storepalette[5,2]:=$00; storepalette[5,3]:=$FC;
-    storepalette[6,1]:=$70; storepalette[6,2]:=$48; storepalette[6,3]:=$00;
-    storepalette[7,1]:=$C4; storepalette[7,2]:=$C4; storepalette[7,3]:=$C4;
-    storepalette[8,1]:=$34; storepalette[8,2]:=$34; storepalette[8,3]:=$34;
-    storepalette[9,1]:=$00; storepalette[9,2]:=$00; storepalette[9,3]:=$70;
-    storepalette[10,1]:=$00; storepalette[10,2]:=$70; storepalette[10,3]:=$00;
-    storepalette[11,1]:=$00; storepalette[11,2]:=$70; storepalette[11,3]:=$70;
-    storepalette[12,1]:=$70; storepalette[12,2]:=$00; storepalette[12,3]:=$00;
-    storepalette[13,1]:=$FC; storepalette[13,2]:=$FC; storepalette[13,3]:=$00;
-    storepalette[14,1]:=$FC; storepalette[14,2]:=$FC; storepalette[14,3]:=$24;
-    storepalette[15,1]:=$FC; storepalette[15,2]:=$FC; storepalette[15,3]:=$FC;
-  end;
+begin
+  storepalette[0,1]:=$00; storepalette[0,2]:=$00; storepalette[0,3]:=$00;
+  storepalette[1,1]:=$00; storepalette[1,2]:=$00; storepalette[1,3]:=$FC;
+  storepalette[2,1]:=$24; storepalette[2,2]:=$FC; storepalette[2,3]:=$24;
+  storepalette[3,1]:=$00; storepalette[3,2]:=$FC; storepalette[3,3]:=$FC;
+  storepalette[4,1]:=$FC; storepalette[4,2]:=$14; storepalette[4,3]:=$14;
+  storepalette[5,1]:=$B0; storepalette[5,2]:=$00; storepalette[5,3]:=$FC;
+  storepalette[6,1]:=$70; storepalette[6,2]:=$48; storepalette[6,3]:=$00;
+  storepalette[7,1]:=$C4; storepalette[7,2]:=$C4; storepalette[7,3]:=$C4;
+  storepalette[8,1]:=$34; storepalette[8,2]:=$34; storepalette[8,3]:=$34;
+  storepalette[9,1]:=$00; storepalette[9,2]:=$00; storepalette[9,3]:=$70;
+  storepalette[10,1]:=$00; storepalette[10,2]:=$70; storepalette[10,3]:=$00;
+  storepalette[11,1]:=$00; storepalette[11,2]:=$70; storepalette[11,3]:=$70;
+  storepalette[12,1]:=$70; storepalette[12,2]:=$00; storepalette[12,3]:=$00;
+  storepalette[13,1]:=$FC; storepalette[13,2]:=$FC; storepalette[13,3]:=$00;
+  storepalette[14,1]:=$FC; storepalette[14,2]:=$FC; storepalette[14,3]:=$24;
+  storepalette[15,1]:=$FC; storepalette[15,2]:=$FC; storepalette[15,3]:=$FC;
+end;
 
 procedure JUMPOUT;
   var i : byte;
-  begin
-    nosound;
-    shutSoundFx;
-    SetIntVec($9,@KbdIntVec);
-    cleardevice;
-    closegraph;
-    TextMode(CO80);
-    ClrScr;
-    halt;
-  end;
+begin
+  nosound;
+  shutSoundFx;
+  SetIntVec($9,@KbdIntVec);
+  cleardevice;
+  closegraph;
+  TextMode(CO80);
+  ClrScr;
+  halt;
+end;
 
 procedure CLEARBUF;
-  begin
-    inline($fa);
-    memw[$40:$1A]:=memw[$40:$1C];
-    inline($fb);
-  end;
+begin
+  inline($fa);
+  memw[$40:$1A]:=memw[$40:$1C];
+  inline($fb);
+end;
 
 function NAMEIN : string;
-  begin
-    ST:='';
-    repeat
-      ch:=readkey;
-      if (ch<>chr(8)) and (ch<>chr(13)) and (length(ST)<8) then begin
-        bar(0,320,639,360);
-        ST:=ST+CH;
-        outtextxy(320,330,ST);
-      end;
-      if (ch=chr(8)) and (length(ST)>0) then begin
-        ST:=copy(ST,1,length(ST)-1);
-        bar(0,320,639,360);
-        outtextxy(320,330,ST);
-      end;
-    until (ch=chr(13)) and (ST<>'');;
-    NAMEIN:=ST;
-  end;
+begin
+  ST:='';
+  repeat
+    ch:=readkey;
+    if (ch<>chr(8)) and (ch<>chr(13)) and (length(ST)<8) then begin
+      bar(0,320,639,360);
+      ST:=ST+CH;
+      outtextxy(320,330,ST);
+    end;
+    if (ch=chr(8)) and (length(ST)>0) then begin
+      ST:=copy(ST,1,length(ST)-1);
+      bar(0,320,639,360);
+      outtextxy(320,330,ST);
+    end;
+  until (ch=chr(13)) and (ST<>'');;
+  NAMEIN:=ST;
+end;
 
 Procedure vwait; assembler;
 asm
-    @@loop1:
-      mov     dx,$3da
-      in      ax,dx
-      and     ax,8
-      jz      @@loop3  {Not in retrace}
+  @@loop1:
+    mov     dx,$3da
+    in      ax,dx
+    and     ax,8
+    jz      @@loop3  {Not in retrace}
 
-    @@loop2:
-      mov     dx,$3da  {Retrace already started- wait for next}
-      in      ax,dx
-      and     ax,8
-      jnz     @@loop2
+  @@loop2:
+    mov     dx,$3da  {Retrace already started- wait for next}
+    in      ax,dx
+    and     ax,8
+    jnz     @@loop2
 
-   @@loop3:          {Wait until retrace}
-      mov     dx,$3da
-      in      ax,dx
-      and     ax,8
+  @@loop3:          {Wait until retrace}
+    mov     dx,$3da
+    in      ax,dx
+    and     ax,8
 
-      jz      @@loop3
+    jz      @@loop3
 end;
 
 procedure FIREWORK(ST : string);
@@ -355,137 +355,121 @@ end;
 
 {F+}
 procedure Keyclick; interrupt;
+var v : boolean;
 begin
   Pval:=Port[$60];
-  if Pval < $80 then begin
-    if Pval=$1D then keydata.kCTRL:=true
-    else if Pval=$10 then keydata.kCTRL:=true
-    else if Pval=$38 then keydata.kALT:=true
-    else if Pval=$2A then keydata.kSHIFT:=true
-    else if Pval=$36 then keydata.kSHIFT:=true
-    else if Pval=$48 then keydata.kUP:=true
-    else if Pval=$50 then keydata.kDOWN:=true
-    else if Pval=$4B then keydata.kLEFT:=true
-    else if Pval=$4D then keydata.kRIGHT:=true
-    else if Pval=16 then keydata.kQ:=true
-    else if Pval=19 then keydata.kR:=true
-    else if Pval=21 then keydata.kY:=true
-    else if Pval=44 then keydata.kZ:=true
-    else if Pval=1 then keydata.KESC:=true
-    else if Pval=31 then keydata.KS:=true
-    else if Pval=83 then keydata.KDEL:=true
-    else if Pval=57  then keydata.SPACE:=true;
-  end else begin
-    Dec(Pval,$80);
-    if Pval=$1D then keydata.kCTRL:=false
-    else if Pval=$10 then keydata.kCTRL:=false
-    else if Pval=$38 then keydata.kALT:=false
-    else if Pval=$2A then keydata.kSHIFT:=false
-    else if Pval=$36 then keydata.kSHIFT:=false
-    else if Pval=$48 then keydata.kUP:=false
-    else if Pval=$50 then keydata.kDOWN:=false
-    else if Pval=$4B then keydata.kLEFT:=false
-    else if Pval=$4D then keydata.kRIGHT:=false
-    else if Pval=16 then keydata.kQ:=false
-    else if Pval=19 then keydata.kR:=false
-    else if Pval=21 then keydata.kY:=false
-    else if Pval=44 then keydata.kZ:=false
-    else if Pval=1 then keydata.kesc:=false
-    else if Pval=31 then keydata.KS:=false
-    else if Pval=83 then keydata.KDEL:=false
-    else if Pval=57 then keydata.SPACE:=false;
-  end;
+  v:=(PVal<$80);
+  if (PVal>=$80) then Dec(PVal,$80);
+
+  if Pval=$1D then keydata.kCTRL:=v
+  else if Pval=$60 then keydata.kCTRL:=v
+  else if Pval=$38 then keydata.kALT:=v
+  else if Pval=$2A then keydata.kSHIFT:=v
+  else if Pval=$36 then keydata.kSHIFT:=v
+  else if Pval=$48 then keydata.kUP:=v
+  else if Pval=$50 then keydata.kDOWN:=v
+  else if Pval=$4B then keydata.kLEFT:=v
+  else if Pval=$4D then keydata.kRIGHT:=v
+  else if Pval=16 then keydata.kQ:=v
+  else if Pval=19 then keydata.kR:=v
+  else if Pval=21 then keydata.kY:=v
+  else if Pval=44 then keydata.kZ:=v
+  else if Pval=1 then keydata.KESC:=v
+  else if Pval=31 then keydata.KS:=v
+  else if Pval=83 then keydata.KDEL:=v
+  else if Pval=57 then keydata.SPACE:=v;
   inline ($9C); { PUSHF -- Push flags }
   { Call old ISR using saved vector }
   KbdIntVec;
+  
+
 end;
 {$F-}
 
 Procedure SET_TIMER;
-  begin
-    gettime(hr,m,sec,h);
-    LSEC:=SEC+1;
-  end;
+begin
+  gettime(hr,m,sec,h);
+  LSEC:=SEC+1;
+end;
 
 Procedure DISP_TIME;
   var S1,S2 : string;
-  begin
-    setfillstyle(1,black);
-    bar(0,0,70,20);
-    settextstyle(smallfont,0,6);
-    setcolor(White);
-    str(TIM,S1);
-    str(TSC,S2);
-    if TSC<10 then S2:='0'+S2;
-    S1:=S1+' : '+S2;
-    settextjustify(lefttext,toptext);
-    outtextxy(2,2,S1);
-    setcolor(black);
-  end;
+begin
+  setfillstyle(1,black);
+  bar(0,0,70,20);
+  settextstyle(smallfont,0,6);
+  setcolor(White);
+  str(TIM,S1);
+  str(TSC,S2);
+  if TSC<10 then S2:='0'+S2;
+  S1:=S1+' : '+S2;
+  settextjustify(lefttext,toptext);
+  outtextxy(2,2,S1);
+  setcolor(black);
+end;
 
 Procedure DISP_SCORE(PLAYER : byte);
   var S : string;
-  begin
-    setfillstyle(1,black);
-    if PLAYER=1 then begin
-      bar(80,0,130,20);
-      settextstyle(smallfont,0,6);
-      setcolor(yellow);
-      str(SC[PLAYER],S);
-      outtextxy(82,2,S);
-      setcolor(black);
-    end else if PLAYER=2 then begin
-      bar(400,0,450,20);
-      settextstyle(smallfont,0,6);
-      setcolor(lightcyan);
-      str(SC[PLAYER],S);
-      outtextxy(402,2,S);
-      setcolor(black);
-    end;
+begin
+  setfillstyle(1,black);
+  if PLAYER=1 then begin
+    bar(80,0,130,20);
+    settextstyle(smallfont,0,6);
+    setcolor(yellow);
+    str(SC[PLAYER],S);
+    outtextxy(82,2,S);
+    setcolor(black);
+  end else if PLAYER=2 then begin
+    bar(400,0,450,20);
+    settextstyle(smallfont,0,6);
+    setcolor(lightcyan);
+    str(SC[PLAYER],S);
+    outtextxy(402,2,S);
+    setcolor(black);
   end;
+end;
 
 Procedure PICKUP(PLAYER : byte);
-  begin
-    If MAP[X[PLAYER],Y[PLAYER],PLAYER]=0 then begin
-      MAP[X[PLAYER],Y[PLAYER],PLAYER]:=2;
-      if OPT>=2 then MAP[X[PLAYER],Y[PLAYER],PLAYER]:=3;
-      SC[PLAYER]:=SC[PLAYER]+1;
-      if SFX=1 then SPLAY(CRUNCH,0,24000);
-      if POWCH[PLAYER]=1 then begin
-        INC(SC[PLAYER]);
-        dec(POWCT[PLAYER]);
-      end;
-      if POWCT[PLAYER]=0 then POWCH[PLAYER]:=0;
+begin
+  If MAP[X[PLAYER],Y[PLAYER],PLAYER]=0 then begin
+    MAP[X[PLAYER],Y[PLAYER],PLAYER]:=2;
+    if OPT>=2 then MAP[X[PLAYER],Y[PLAYER],PLAYER]:=3;
+    SC[PLAYER]:=SC[PLAYER]+1;
+    if SFX=1 then SPLAY(CRUNCH,0,24000);
+    if POWCH[PLAYER]=1 then begin
+      INC(SC[PLAYER]);
+      dec(POWCT[PLAYER]);
     end;
+    if POWCT[PLAYER]=0 then POWCH[PLAYER]:=0;
 
-    if MAP[X[PLAYER],Y[PLAYER],PLAYER]=1 then begin
-      MAP[X[PLAYER],Y[PLAYER],PLAYER]:=2;
-      if OPT>=2 then MAP[X[PLAYER],Y[PLAYER],PLAYER]:=3;
-      SC[PLAYER]:=SC[PLAYER]+10;
-      POWCT[PLAYER]:=50;
-      POWCH[PLAYER]:=1;
-      if SFX=1 then SPLAY(POWER,1,12000);
-    end;
+  end else if MAP[X[PLAYER],Y[PLAYER],PLAYER]=1 then begin
+    MAP[X[PLAYER],Y[PLAYER],PLAYER]:=2;
+    if OPT>=2 then MAP[X[PLAYER],Y[PLAYER],PLAYER]:=3;
+    SC[PLAYER]:=SC[PLAYER]+10;
+    POWCT[PLAYER]:=50;
+    POWCH[PLAYER]:=1;
+    if SFX=1 then SPLAY(POWER,1,12000);
   end;
+end;
 
 Procedure NOTES1(TUNUM : integer);
-  begin
-    if OCTAVE<>0 then crt.sound(MUSIC[OUT]*OCTAVE);
-    inc(NOTECOUNT);
-    OCTAVE:=1;
-    OUT:=TUNE[TUNUM,NOTECOUNT]+STARTNOTE;
-    repeat
-      if OUT>12 then begin
-        dec(OUT,12);
-        OCTAVE:=2*OCTAVE;
-      end;
-    until OUT<=12;
-    if (NOTECOUNT=2) and (TUNUM=2) then playcols;
-    if NOTECOUNT=32 then begin
-      NOTECOUNT:=0;
-      inc(STARTNOTE);
-      end;
+begin
+  if OCTAVE<>0 then crt.sound(MUSIC[OUT]*OCTAVE);
+  inc(NOTECOUNT);
+  OCTAVE:=1;
+  OUT:=TUNE[TUNUM,NOTECOUNT]+STARTNOTE;
+  repeat
+    if OUT>12 then begin
+      dec(OUT,12);
+      OCTAVE:=2*OCTAVE;
+    end;
+  until OUT<=12;
+  if (NOTECOUNT=2) and (TUNUM=2) then playcols;
+  if NOTECOUNT=32 then begin
+    NOTECOUNT:=0;
+    inc(STARTNOTE);
   end;
+end;
 
 Procedure CUBE; external; {$L CUBE.OBJ}
 Procedure POWCHUNK ; external; {$L POWCHUNK.OBJ}
@@ -496,123 +480,120 @@ Procedure WCTSOFT; external; {$L WCTSOFT.OBJ}
 Procedure SMTITLE; external; {$L SMTITLE.OBJ}
 
 procedure GETRGB(NR: byte; Var R,G,B :byte);
-  begin
-    Port[$3c7]:=Nr;
-    r:=Port[$3c9];
-    g:=Port[$3c9];
-    b:=Port[$3c9];
-  end;
+begin
+  Port[$3c7]:=Nr;
+  r:=Port[$3c9];
+  g:=Port[$3c9];
+  b:=Port[$3c9];
+end;
 
 procedure dMAZE(XSPAN,YSPAN,PLAYERS : byte);
-  begin
-    FLAG:=0;
-    R:=0;
-    C:=0;
-    D:=0;
-    E:=0;
-    F:=0;
-    XL:=0;
-    YL:=0;
-    randomize;
-    for XL:=0 to XSPAN do
-      for YL:=0 to YSPAN do begin
-        MAZE[XL,YL]:=0;
-        MAP[XL,YL,1]:=3;
-        MAP[XL,YL,2]:=3;
-      end;
+begin
+  FLAG:=0;
+  R:=0;
+  C:=0;
+  D:=0;
+  E:=0;
+  F:=0;
+  XL:=0;
+  YL:=0;
+  randomize;
+  for XL:=0 to XSPAN do for YL:=0 to YSPAN do begin
+    MAZE[XL,YL]:=0;
+    MAP[XL,YL,1]:=3;
+    MAP[XL,YL,2]:=3;
+  end;
 
-    for XL:=0 to XSPAN do begin
-      MAZE[XL,1]:=2; MAZE[XL,2]:=2; MAZE[XL,YSPAN-1]:=2; MAZE[XL,YSPAN]:=2;
-      MAP[XL,1,1]:=3; MAP[XL,2,1]:=3; MAP[XL,YSPAN-1,1]:=3; MAP[XL,YSPAN,1]:=3;
-      MAP[XL,1,2]:=3; MAP[XL,2,2]:=3; MAP[XL,YSPAN-1,2]:=3; MAP[XL,YSPAN,2]:=3;
-    end;
+  for XL:=0 to XSPAN do begin
+    MAZE[XL,1]:=2; MAZE[XL,2]:=2; MAZE[XL,YSPAN-1]:=2; MAZE[XL,YSPAN]:=2;
+    MAP[XL,1,1]:=3; MAP[XL,2,1]:=3; MAP[XL,YSPAN-1,1]:=3; MAP[XL,YSPAN,1]:=3;
+    MAP[XL,1,2]:=3; MAP[XL,2,2]:=3; MAP[XL,YSPAN-1,2]:=3; MAP[XL,YSPAN,2]:=3;
+  end;
 
-    for YL:=2 to YSPAN-2 do begin
-      MAZE[0,YL]:=2; MAZE[1,YL]:=2; MAZE[XSPAN-1,YL]:=2; MAZE[XSPAN,YL]:=2;
-    end;
+  for YL:=2 to YSPAN-2 do begin
+    MAZE[0,YL]:=2; MAZE[1,YL]:=2; MAZE[XSPAN-1,YL]:=2; MAZE[XSPAN,YL]:=2;
+  end;
 
-    for XL:=0 to XSPAN do
-      for YL:=1 to YSPAN do begin
-        putimage(XL*8,YL*8,pCUBE^,normalput);
-        if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCUBE^,normalput);
-      end;
+  for XL:=0 to XSPAN do for YL:=1 to YSPAN do begin
+    putimage(XL*8,YL*8,pCUBE^,normalput);
+    if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCUBE^,normalput);
+  end;
 
-    YL:=4+(2*random(trunc(YSPAN/3)));
-    Y[1]:=YL;
-    X[1]:=0;
-    Y[2]:=YL;
-    X[2]:=0;
-    setfillstyle(1,0);
-    for XL:=0 to 4 do begin
-      putimage(XL*8,YL*8,pCHUNK^,normalput);
-      if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
-      MAP[XL,YL,1]:=0;
-      MAP[XL,YL,2]:=0;
-    end;
+  YL:=4+(2*random(trunc(YSPAN/3)));
+  Y[1]:=YL;
+  X[1]:=0;
+  Y[2]:=YL;
+  X[2]:=0;
+  setfillstyle(1,0);
+  for XL:=0 to 4 do begin
+    putimage(XL*8,YL*8,pCHUNK^,normalput);
+    if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
+    MAP[XL,YL,1]:=0;
+    MAP[XL,YL,2]:=0;
+  end;
 
-    MAZE[XL,YL]:=2;
-    repeat
-      if not ((MAZE[XL+2,YL]<>0) and (MAZE[XL-2,YL]<>0) and (MAZE[XL,YL+2]<>0) and (MAZE[XL,YL-2]<>0)) then begin
-        repeat
-          putimage(XL*8,YL*8,pCHUNK^,normalput);
-          if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
-          MAP[XL,YL,1]:=0;
-          MAP[XL,YL,2]:=0;
-          R:=random(4);
-          if R=0 then C:=XL+2;
-          if R=1 then C:=XL-2;
-          if R>1 then C:=XL;
-          if R=2 then D:=YL+2;
-          if R=3 then D:=YL-2;
-          if R<2 then D:=YL;
-        until MAZE[C,D]=0;
-        E:=trunc((C+XL)/2);
-        F:=trunc((D+YL)/2);
-        MAZE[C,D]:=1; MAZE[E,F]:=1;
-        putimage(E*8,F*8,pCHUNK^,normalput);
-        if PLAYERS=2 then putimage(320+(E*8),F*8,pCHUNK^,normalput);
-        MAP[E,F,1]:=0;
-        MAP[E,F,2]:=0;
-        XL:=C; YL:=D;
-
-      end else begin
-
-        MAZE[XL,YL]:=2;
+  MAZE[XL,YL]:=2;
+  repeat
+    if not ((MAZE[XL+2,YL]<>0) and (MAZE[XL-2,YL]<>0) and (MAZE[XL,YL+2]<>0) and (MAZE[XL,YL-2]<>0)) then begin
+      repeat
         putimage(XL*8,YL*8,pCHUNK^,normalput);
         if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
         MAP[XL,YL,1]:=0;
         MAP[XL,YL,2]:=0;
-        FLAG:=0;
-        if (FLAG=0) and (MAZE[XL+1,YL]=1) then begin MAZE[XL+1,YL]:=2; inc(XL,2); FLAG:=1; end;
-        if (FLAG=0) and (MAZE[XL-1,YL]=1) then begin MAZE[XL-1,YL]:=2; dec(XL,2); FLAG:=1; end;
-        if (FLAG=0) and (MAZE[XL,YL+1]=1) then begin MAZE[XL,YL+1]:=2; inc(YL,2); FLAG:=1; end;
-        if (FLAG=0) and (MAZE[XL,YL-1]=1) then begin MAZE[XL,YL-1]:=2; dec(YL,2); FLAG:=1; end;
-        if FLAG=0 then begin
-          YL:=4+(2*random(trunc(YSPAN/3)));
-          EX:=XSPAN-2;
-          EY:=YL;
-          for XL:=XSPAN-2 to XSPAN do begin
-            setfillstyle(1,0);
-            putimage(XL*8,YL*8,pCHUNK^,normalput);
-            if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
-            MAP[XL,YL,1]:=0;
-            MAP[XL,YL,2]:=0;
-            FLAG:=2;
-          end;
+        R:=random(4);
+        if R=0 then C:=XL+2;
+        if R=1 then C:=XL-2;
+        if R>1 then C:=XL;
+        if R=2 then D:=YL+2;
+        if R=3 then D:=YL-2;
+        if R<2 then D:=YL;
+      until MAZE[C,D]=0;
+      E:=trunc((C+XL)/2);
+      F:=trunc((D+YL)/2);
+      MAZE[C,D]:=1; MAZE[E,F]:=1;
+      putimage(E*8,F*8,pCHUNK^,normalput);
+      if PLAYERS=2 then putimage(320+(E*8),F*8,pCHUNK^,normalput);
+      MAP[E,F,1]:=0;
+      MAP[E,F,2]:=0;
+      XL:=C; YL:=D;
+
+    end else begin
+      MAZE[XL,YL]:=2;
+      putimage(XL*8,YL*8,pCHUNK^,normalput);
+      if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
+      MAP[XL,YL,1]:=0;
+      MAP[XL,YL,2]:=0;
+      FLAG:=0;
+      if (FLAG=0) and (MAZE[XL+1,YL]=1) then begin MAZE[XL+1,YL]:=2; inc(XL,2); FLAG:=1; end;
+      if (FLAG=0) and (MAZE[XL-1,YL]=1) then begin MAZE[XL-1,YL]:=2; dec(XL,2); FLAG:=1; end;
+      if (FLAG=0) and (MAZE[XL,YL+1]=1) then begin MAZE[XL,YL+1]:=2; inc(YL,2); FLAG:=1; end;
+      if (FLAG=0) and (MAZE[XL,YL-1]=1) then begin MAZE[XL,YL-1]:=2; dec(YL,2); FLAG:=1; end;
+      if FLAG=0 then begin
+        YL:=4+(2*random(trunc(YSPAN/3)));
+        EX:=XSPAN-2;
+        EY:=YL;
+        for XL:=XSPAN-2 to XSPAN do begin
+          setfillstyle(1,0);
+          putimage(XL*8,YL*8,pCHUNK^,normalput);
+          if PLAYERS=2 then putimage(320+(XL*8),YL*8,pCHUNK^,normalput);
+          MAP[XL,YL,1]:=0;
+          MAP[XL,YL,2]:=0;
+          FLAG:=2;
         end;
       end;
-    until FLAG=2;
-    for L:=1 to TRUNC((XSPAN/16)+(YSPAN/16)) do begin
-      repeat
-        XL:=random(XSpAN-2)+1;
-        YL:=random(YSpAN-2)+1;
-      until MAP[XL,YL,1]=0;
-      MAP[XL,YL,1]:=1;
-      MAP[XL,YL,2]:=1;
-      putimage(XL*8,(YL*8),pPOWCHUNK^,normalput);
-      if PLAYERS=2 then putimage(320+(XL*8),(YL*8),pPOWCHUNK^,normalput);
     end;
+  until FLAG=2;
+  for L:=1 to TRUNC((XSPAN/16)+(YSPAN/16)) do begin
+    repeat
+      XL:=random(XSpAN-2)+1;
+      YL:=random(YSpAN-2)+1;
+    until MAP[XL,YL,1]=0;
+    MAP[XL,YL,1]:=1;
+    MAP[XL,YL,2]:=1;
+    putimage(XL*8,(YL*8),pPOWCHUNK^,normalput);
+    if PLAYERS=2 then putimage(320+(XL*8),(YL*8),pPOWCHUNK^,normalput);
   end;
+end;
 
 
 begin
@@ -779,6 +760,7 @@ begin
       else if OPT<4 then begin TIM:=1; TSC:=30; end;
       repeat
         for PLAYER:=1 to PS do begin
+
           if MOVER[PLAYER]>0 then begin
             line((X[PLAYER]*8)+(8-MOVER[PLAYER])+((PLAYER-1)*320),
               (Y[PLAYER]*8),(X[PLAYER]*8)+(8-MOVER[PLAYER])+((PLAYER-1)*320),(Y[PLAYER]*8)+7);
