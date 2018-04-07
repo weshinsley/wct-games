@@ -1,6 +1,6 @@
 # Smudgelet's Maze
 
-Writte by Wes (with Tom's libraries and DSIK), for Mark's 14th birthday in
+Written by Wes (with Tom's libraries and DSIK), for Mark's 14th birthday in
 April 1996. (Mark is Chris's youngest brother). Smudgelet was one of many 
 mostly affectionate nicknames for Chris's youngest brother Mark, the benefactor 
 of this game. 

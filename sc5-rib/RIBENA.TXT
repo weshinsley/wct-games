@@ -1,0 +1,301 @@
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+                      %                                %
+                      %   WCT ENTERTAINMENT PRESENTS   %
+                      %                                %
+                      %      SHOOTING CHEDDERY 5       %
+                      %                                %
+		      %      SHOOTING RIBENABERRY      %
+		      %                                %
+                      %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+  
+                                 Contents
+
+			  1.  The Introduction
+                          2.  The Installation Guide
+                          3.  The Game
+                          4.  The Level Editor
+                          5.  The Credits
+                          6.  The Banana
+                          7.  The Very End
+                          8.  The Invisible Section
+
+
+------------------------------------------------------------------------------
+                          1.  The Introduction
+------------------------------------------------------------------------------
+##############################################################################
+#                                                                            #
+#    The year is 2027. The Ribena Crisis has raged for over 20 years. The    #
+#    Ribenaberry colony, who were placed in exotic Penge for its climatic    #
+#    suitability, mysteriously vanished in 2007 and up until now remained    #
+#    officially lost. Just a few hours ago, their situation was uncovered    #
+#    in the intolerable environment which is Milton Keynes. It is *VITAL*    #
+#    to free them as soon as possible. The entire colony are very heavily    #
+#    comatosed, and will require a violent awakening to ever produce very    #
+#    tasty fruity drinks ever again.....                                     #
+#                                                                            #
+#    You are veteran commando Ben Brooks, ribena guru since 1997, who had    #
+#    escaped a similar ribena based coma, publicised in The Cheddar, June    #
+#    1996. Your weapons are the two most suited, and technologically fine    #
+#    tuned devices in the world, precision made for this exact mission.      #
+#                                                                            #
+#    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    #
+#    $............$...............$.....................................$    #
+#    $.......XX...$.W-C-T.........$....An.adjustably.bendably.banana....$    #
+#    $........XX..$.International.$.capable.of.springing.a.spherical....$    #
+#    $........XX..$.Bendable......$.object.to.a.speed.of.over twenty....$    #
+#    $.......XX...$.Banana........$.metres.per.second..Geometrically....$    #
+#    $.....XXX....$.Liberation....$.exactified.to.absolute.precision....$    #
+#    $..XXXX......$.Enforcer......$.for.comatosed.fruity.liberations....$    #
+#    $............$...............$.....................................$    #
+#    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    #
+#    $............$...............$.....................................$    #
+#    $....OOOO....$.Spherical.....$....Incredibly.bouncy:-.free.from....$    #
+#    $..OOOOOOOO..$.Cheddar.......$.all.forms.of.friction,.due.to.an....$    #
+#    $..OOOOOOOO..$.With..........$.amazing.new.invention.known.as.a....$    #
+#    $..OOOOOOOO..$.Industrial....$.Bernoulli.Enhancement.Neurobrain....$    #
+#    $..OOOOOOOO..$.Steel.........$.(BEN).-.armed.with.a.small.shock....$    #
+#    $....OOOO....$.Housing.......$.device.for.waking.fruits.in.coma....$    #
+#    $............$...............$.....................................$    #
+#    $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$    #
+#                                                                            #
+#    So.. you, Ben have been launched to Milton Keynes, observing all the    #
+#    necessary health regulations, to liberate the berries, with your kit    #
+#    of weapons above. Most berries need just one scwish-hit to be awoken    #
+#    from their coma. Others may require several charges from the scwish,    #
+#    and some sad cases will be permanently vegatated, after twenty years    #
+#    of cruel conditions. WCT are desparately working as we speak, making    #
+#    enhancements to aid your mission; there's the Fluffly Latex Bendable    #
+#    Banana Laser Enhancement (FLIBBLE), also the new Gigantic Inflatible    #
+#    Bendy Banana Elongation Reactor (GIBBER), and other developing tools    #
+#    to aid your progress. Good luck commando.                               #
+#                                                                            #
+##############################################################################
+
+------------------------------------------------------------------------------
+                          2.  The Installation Guide
+------------------------------------------------------------------------------
+
+     Compatability: all parts of this game will run under Win95, Win 3.1, or
+     (BEST) native DOS. From Win95, set it to run in a full window, but don't
+     blame me if the sound jerks now and then, because that's not my fault -
+     it shouldn't happen in DOS. Windows NT should be fine, although whether
+     or not sound cards work properly in NT, I'm afraid I don't know!
+
+     WINDOWS 95 WARNING: on some machines, doing a 'Shut down to DOS mode'
+     from Win95 causes problems with the sound, which no-one can explain - it
+     works for a couple of seconds and shuts down. However, if you reboot
+     your Win95 machine, and press F8, when it says 'Starting Windows 95' and
+     choose Command Prompt, and then run the necessary bits below - mouse.com
+     and any sound drivers, then it should work excellently.
+
+     i)  Unzip the ZIP file - which you've already done if you're reading this.
+         Use a directory such as C:\WCT\RIBENA - for convenience, especially if
+         you are planning, or have already installed some other WCT components.
+
+     ii) Run MOUSE.COM - this does not come with the game, but you will need 
+         to run a mouse driver for DOS programs. If you don't know where to
+         find one, then type DIR C:\MOUSE.COM /S, to try and locate one. All
+         computers should come with one! (If you're running from Win95 DOS
+         PROMPT, you won't need this)
+
+    iii) Run SETUP.EXE - this configures Ribena for your sound card. You will
+         be asked for the address (220), interrupt (5), DMA Channel (1) and
+         the frequency of sound (44100, unless you have a slower computer).
+         The values above are most common, but not at all definite!
+         If in doubt, type 'SET' from your DOS prompt, and look for text such
+         as 'SET BLASTER=A220 I5 D1' - the A is the address, I the interrupt
+         and D the DMA channel. If that line doesn't appear when you type
+         SET, then try 220, 5, 1 - that's quite common. Otherwise, you should
+         be able to find out the settings from your sound-card manual.
+
+     iv) ROCK AND ROLL! Run RIBENA.EXE for the game, and RIBEDIT for the level
+         editor. (RIBENA.HI, RIBENA.INI and SOUND.CFG will automatically be
+         created).
+
+------------------------------------------------------------------------------
+                          3.  The Game
+------------------------------------------------------------------------------
+
+        From the title page, press P to play, H for hi-scores, O for options
+          or G for the gameplan, (or the left mouse button starts as well).
+
+        Options: Sound (on/off)   - selects sound effects during the game.
+                 Players  (1-8)   - number of players in the game.
+                 Level            - allows you to enter a level password.
+                 Game speed (1-7) - The relative speed of the scwish.
+                 Names            - Enter the names of the players in the
+                                    game (used to automatically update the
+                                    hi-score table as well).
+
+        Playing the game: a warning screen appears, showing the player name
+      and the password for that level. Move the mouse to control your wibble,
+      left mouse button to launch the scwish. Up and down arrows control
+      the bendiness of your banana, and the left and right arrow keys control
+      which of your current range of gadgets to activate. The left mouse
+      button is used to activate any gadget you may have, and the right button
+      speeds things up slightly - useful if the ball is stuck in an enclosed
+      area, and want to hurry things up a bit.
+
+        Knock out all the berries, and try and catch them in the banana for
+      extra points. Make use of the angled bananas for controlling the
+      scwish. Some berries may require several hits, others may be fixed in
+      place, (see section 1). WCT gadgets are generally hidden under berries
+      for safe keeping, and will fall down from the sky. Since typing the
+      first section, WCT have invented an 'banana bonus' to give you an
+      extra life, (you have 3 scwishs, and you lose one if you miss it...)
+      and also a nuclear bomb, to blitz the level, liberating all the
+      berries in one swoop. There are other gadgets that WCT are working on,
+      although the strange management choice to put ANDY on the design team
+      has had certain side effects here and there....
+
+        Warning: the scwish will bounce off gadgets, and falling berries,
+      so you'll need to be careful.... The scwish has an auto-escape
+      feature, so if it gets stuck between berries, it will eventually
+      free itself, or will return itself to your banana for another launch.
+      Similarly, it has been known for the scwish to get caught up in
+      falling objects, and in this case, it will also be returned to
+      your banana.
+
+        Escape will eject you instantly to the main menu, without even
+      passing 'go' and collecting £200 salary. A further Escape will
+      exit you utterly, into the world of DOS, or worse....
+     
+
+------------------------------------------------------------------------------
+                          4.  The Level Editor
+------------------------------------------------------------------------------
+
+        RIBEDIT.EXE is a level editor for Ribenaberry. It was used for
+      making the twenty current game levels. It is quite crude (ie, ugly),
+      but easy to use. The panel on the left shows the current settings,
+      and at the bottom left of the screen, your co-ordinates, and the
+      attributes of the berry beneath the mouse are shown. Move the mouse
+      and click the left mouse button to place a berry, right mouse button
+      to erase a berry.
+
+      Keys:
+             1. Toggle through the available colours for berries.
+             2. PERM - stay there forever. EXP - 'explode' on first hit
+                INC-EXP - increases colour on each hit, until it explodes.
+                DEC-EXP - decreases colour on each hit, until it explodes.
+             3. HITS - number of hits necessary to explode INC/DEC berry.
+
+             L. Load level - REMEMBER to save the level you are working on,
+                if you want to keep it, because you'll lose it after you
+                load another level.
+             S. Save level - writes the current level you are working on to
+                the main data file.
+             C. Copy buffer - copies the current level into a buffer.
+             P. Paste buffer - pastes the copied level onto the current level
+             X. Clear buffer - empties the buffer.
+
+      Notes:
+             i) Avoid tight fits! The scwish is slightly thinner than a berry
+                so don't have very small gaps to get through. (Unless you want
+                REALLY difficult or impossible levels)
+            ii) Remember not to enclose explodeable berries inside boxes of
+                permanent ones... In the game, if there is a level with no
+                explodable berries on it, then it jumps back to level 1,
+                assuming that there are no more levels to go.
+           iii) Levels 1-20 are inaccessible from the level editor - they
+                are default ribenaberry ones... I guess you need to know
+                the password for level 21 to test your levels.....
+                OH well... <begrudgingly> ... it's BLOBALOB ... I'm not
+                telling you any more, so you'll have to complete your own
+                levels to find them out. There's room for 80 levels - that
+                includes the 20 default ones, and 60 levels of your own.
+            iv) SEND YOUR LEVELS TO US! If you have made good fun levels,
+                (and especially ORIGINAL ONES) send them to us. You can
+                mail RIBENA.DAT to us, and that will contain them. 
+
+------------------------------------------------------------------------------
+                          5.  The Credits
+------------------------------------------------------------------------------
+
+      Shooting Ribenaberry is copyright WCT Entertainment, May 1994.
+      It is freeware; you can distribute it to anyone you like provided:
+
+                   i) that no charge is made of any sort.
+
+                  ii) that all files from the ORIGINAL ZIP -
+                        (that EXCLUDES ribena.hi, ribena.ini and sound.cfg,
+                         which are created by ribena.exe and setup.exe)
+                         are present in UNCHANGED state.
+
+                 iii) that you SMILE as you distribute it.
+
+                  iv) if you like it, PLEASE, tell us!
+
+                            -----------------
+
+                  Design, Coding, Graphics  :      Wes
+                  Music, Level Editor  
+
+                  256-Colour Support,       :      Tom
+                  Banana Calculations,
+                  Keyboard Technical bits
+
+                  Executive Producer,       :      Chris
+                  Design Consultant
+
+                  Music Player              :      DSIK: Digital Sound
+                                                         Interface Kit
+
+                  Sound Effects             :      Rich, Jon,
+                  Production Team                  Wes, Ed, and Sam.
+
+                  Beta Test Teams           : A:-  Ed, Jon, Karim,
+                                                   Rich, Sam, Wes, Jamie.
+                                         
+                                              B:-  Chris, Dave, Mark, Joy
+                                         
+                                              C:-  Sarah, Andi
+                                         
+                                              D:-  Joy, Sam
+                                          
+                                              E:-  Frans, Deb
+                                         
+                                              F:-  Fiona, Alison
+
+------------------------------------------------------------------------------
+                          6.  The Banana
+------------------------------------------------------------------------------
+
+                       Here's a free Virtual Banana.
+
+          VIRTUAL#BANANA#VIRTUAL#BANANA#VIRTUAL#BANANA#VIRTUAL#BANANA
+          IRTUAL#BANANA#VIRTUAL#BANA   VIRTUAL#BANANA#VIRTUAL#BANANA#
+          RTUAL#BANANA#VIRTUAL#BANA     RTUAL#BANANA#VIRTUAL#BANANA#V
+          TUAL#BANANA#VIRTUAL#BANAN     TUAL#BANANA#VIRTUAL#BANANA#VI
+          UAL#BANANA#VIRTUAL#BANA      TUAL#BANANA#VIRTUAL#BANANA#VIR
+          AL#BANANA#VIRTUAL#BANA      TUAL#BANANA#VIRTUAL#BANANA#VIRT
+          L#BANANA#VIRTUAL#BANA       UAL#BANANA#VIRTUAL#BANANA#VIRTU
+          #BANANA#VIRTUAL#BANA       UAL#BANANA#VIRTUAL#BANANA#VIRTUA
+          BANANA#VIRTUAL#BANAN       AL#BANANA#VIRTUAL#BANANA#VIRTUAL
+          ANANA#VIRTUAL#BANAN        L#BANANA#VIRTUAL#BANANA#VIRTUAL#
+          NANA#VIRTUAL#BANANA         BANANA#VIRTUAL#BANANA#VIRTUAL#B
+          ANA#VIRTUAL#BANANA#         ANANA#VIRTUAL#BANANA#VIRTUAL#BA
+          NA#VIRTUAL#BANANA#V          ANA#VIRTUAL#BANANA#VIRTUAL#BAN
+          A#VIRTUAL#BANANA#VI           A#VIRTUAL#BANANA#VIRTUAL#BANA
+          #VIRTUAL#BANANA#VIR            VIRTUAL#BANANA#VIRTUAL#BANAN
+          VIRTUAL#BANANA#VIRTU            RTUAL#BANANA#VIRTUAL#BANANA
+          IRTUAL#BANANA#VIRTUA             UAL#BANANA#VIRTUAL#BANANA#
+          RTUAL#BANANA#VIRTUAL#             L#BANANA#VIRTUAL#BANANA#V
+          TUAL#BANANA#VIRTUAL#BA              ANANA#VIRTUAL#BANANA#VI
+          UAL#BANANA#VIRTUAL#BAN               ANA#VIRTUAL#BANANA#VIR
+          AL#BANANA#VIRTUAL#BANANA               #VIRTUAL#BANANA#VIRT
+          L#BANANA#VIRTUAL#BANANA#VI               RTUAL#BANANA#VIRTU
+          #BANANA#VIRTUAL#BANANA#VIRTUA              AL#BANANA#VIRTUA
+          BANANA#VIRTUAL#BANANA#VIRTUAL#BAN            BANANA#VIRTUAL
+          ANANA#VIRTUAL#BANANA#VIRTUAL#BANANA#VIR        ANA#VIRTUAL#
+          NANA#VIRTUAL#BANANA#VIRTUAL#BANANA#VIRTUAL#BANANA#VIRTUAL#B
+
+------------------------------------------------------------------------------
+                          7. The Very End
+------------------------------------------------------------------------------
+
+                             THE VERY END
+                             ------------
+

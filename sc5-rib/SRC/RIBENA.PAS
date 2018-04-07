@@ -48,6 +48,7 @@ var
   LastSound : byte;
 
 const
+    AUDIO_DIR = 'AUDIO/';
     CompleteSound = 12;
     GoverSound = 11;
     ReadySound = 10;
@@ -196,18 +197,18 @@ begin
       writeln('Error Initializing the Sound System.');
       exit;
     end;
-    Sample[1]:=DsmLoadSample('audio/boing.wav',0);
-    Sample[2]:=DsmLoadSample('audio/shot.wav',0);
-    Sample[3]:=DsmLoadSample('audio/banh.wav',0);
-    Sample[4]:=DsmLoadSample('audio/Ooh.wav',0);
-    Sample[5]:=DsmLoadSample('audio/squish.wav',0);
-    Sample[6]:=DsmLoadSample('audio/caught.wav',0);
-    Sample[7]:=DsmLoadSample('audio/bonus.wav',0);
-    Sample[8]:=DsmLoadSample('audio/life.wav',0);
-    Sample[9]:=DsmLoadSample('audio/rasp.wav',0);
-    Sample[10]:=DsmLoadSample('audio/ready.wav',0);
-    Sample[11]:=DsmLoadSample('audio/gover.wav',0);
-    Sample[12]:=DsmLoadSample('audio/gladness.wav',0);
+    Sample[1]:=DsmLoadSample(AUDIO_DIR+'boing.wav',0);
+    Sample[2]:=DsmLoadSample(AUDIO_DIR+'shot.wav',0);
+    Sample[3]:=DsmLoadSample(AUDIO_DIR+'banh.wav',0);
+    Sample[4]:=DsmLoadSample(AUDIO_DIR+'Ooh.wav',0);
+    Sample[5]:=DsmLoadSample(AUDIO_DIR+'squish.wav',0);
+    Sample[6]:=DsmLoadSample(AUDIO_DIR+'caught.wav',0);
+    Sample[7]:=DsmLoadSample(AUDIO_DIR+'bonus.wav',0);
+    Sample[8]:=DsmLoadSample(AUDIO_DIR+'life.wav',0);
+    Sample[9]:=DsmLoadSample(AUDIO_DIR+'rasp.wav',0);
+    Sample[10]:=DsmLoadSample(AUDIO_DIR+'ready.wav',0);
+    Sample[11]:=DsmLoadSample(AUDIO_DIR+'gover.wav',0);
+    Sample[12]:=DsmLoadSample(AUDIO_DIR+'gladness.wav',0);
 
     DSMSetupVoices(4,192);
   end;
@@ -784,48 +785,32 @@ end;
 {F+}
 procedure Keyclick; interrupt;
 var Pval : byte;
+    val : boolean;
 begin
   Pval:=Port[$60];
-  if Pval < $80 then begin
-    if Pval=$1D then keydata.kCTRL:=true
-    else if Pval=$10 then keydata.kCTRL:=true
-    else if Pval=$38 then keydata.kALT:=true
-    else if Pval=$2A then keydata.kSHIFT:=true
-    else if Pval=$36 then keydata.kSHIFT:=true
-    else if Pval=$48 then keydata.kUP:=true
-    else if Pval=$50 then keydata.kDOWN:=true
-    else if Pval=$4B then keydata.kLEFT:=true
-    else if Pval=$4D then keydata.kRIGHT:=true
-    else if Pval=16 then keydata.kQ:=true
-    else if Pval=19 then keydata.kR:=true
-    else if Pval=21 then keydata.kY:=true
-    else if Pval=44 then keydata.kZ:=true
-    else if Pval=1 then keydata.KESC:=true
-    else if Pval=31 then keydata.KS:=true
-    else if Pval=83 then keydata.KDEL:=true
-    else if Pval=57  then keydata.SPACE:=true
-    else if (Pval>=59) and (Pval<=68) then keydata.kF[Pval-58]:=true;
-  end else begin
-    Dec(Pval,$80);
-    if Pval=$1D then keydata.kCTRL:=false
-    else if Pval=$10 then keydata.kCTRL:=false
-    else if Pval=$38 then keydata.kALT:=false
-    else if Pval=$2A then keydata.kSHIFT:=false
-    else if Pval=$36 then keydata.kSHIFT:=false
-    else if Pval=$48 then keydata.kUP:=false
-    else if Pval=$50 then keydata.kDOWN:=false
-    else if Pval=$4B then keydata.kLEFT:=false
-    else if Pval=$4D then keydata.kRIGHT:=false
-    else if Pval=16 then keydata.kQ:=false
-    else if Pval=19 then keydata.kR:=false
-    else if Pval=21 then keydata.kY:=false
-    else if Pval=44 then keydata.kZ:=false
-    else if Pval=1 then keydata.kesc:=false
-    else if Pval=31 then keydata.KS:=false
-    else if Pval=83 then keydata.KDEL:=false
-    else if Pval=57 then keydata.SPACE:=false
-    else if (Pval>=59) and (Pval<=68) then keydata.kF[Pval-58]:=false;
+  val:=true;
+  if Pval >= $80 then begin
+    val:=false;
+    dec(PVal,$80);
   end;
+  if Pval=$1D then keydata.kCTRL:=val
+  else if Pval=$60 then keydata.kCTRL:=val
+  else if Pval=$38 then keydata.kALT:=val
+  else if Pval=$2A then keydata.kSHIFT:=val
+  else if Pval=$36 then keydata.kSHIFT:=val
+  else if Pval=$48 then keydata.kUP:=val
+  else if Pval=$50 then keydata.kDOWN:=val
+  else if Pval=$4B then keydata.kLEFT:=val
+  else if Pval=$4D then keydata.kRIGHT:=val
+  else if Pval=16 then keydata.kQ:=val
+  else if Pval=19 then keydata.kR:=val
+  else if Pval=21 then keydata.kY:=val
+  else if Pval=44 then keydata.kZ:=val
+  else if Pval=1 then keydata.KESC:=val
+  else if Pval=31 then keydata.KS:=val
+  else if Pval=83 then keydata.KDEL:=val
+  else if Pval=57  then keydata.SPACE:=val
+  else if (Pval>=59) and (Pval<=68) then keydata.kF[Pval-58]:=val;
   inline ($9C); { PUSHF -- Push flags }
   { Call old ISR using saved vector }
   KbdIntVec;
@@ -898,7 +883,7 @@ begin
       writeln('Error Initializing the Sound System.');
       exit;
     end;
-    Module := DSMLoad('audio/ribena.dsm',0);
+    Module := DSMLoad(AUDIO_DIR+'ribena.dsm',0);
     if Module = nil then begin
       case DSMStatus of
         ERR_NORAM:  writeln('Not enough system memory.');
@@ -1147,7 +1132,7 @@ begin
       Screen[First,L]:=(162+(abs(3-L)*2))*Strip[L];
     DSMPoll;
     Bx:=0; By:=0;
-    t2_vretrace;}
+{    t2_vretrace;}
     repeat
       repeat
         if (Bx shl 1)>0 then t2_dot(50+(Bx shl 1),173+Bend[BX]+(By shl 1),Screen[(Bx+First) mod 110,By]);
