@@ -6,7 +6,7 @@
 | Author      | Wes                   |
 | Date        | April 2000            |
 | Reason      | Mark's 18th birthday  |
-|-------------------------------------|
+|-------------|-----------------------|
 
 ## Introduction
 

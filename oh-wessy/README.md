@@ -7,7 +7,7 @@
 | Date        | August 1996           |
 | Reason      | Wes's 18th birthday   |
 | Inspired by | Oh Mummy              |
-|-------------------------------------|
+|-------------|-----------------------|
 
 # Quick Plot
 

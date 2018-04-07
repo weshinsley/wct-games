@@ -7,7 +7,7 @@
 | Date        | April 1996            |
 | Reason      | Mark's 14th birthday  |
 |    and      | Writing for an 8086   |
-|-------------------------------------|
+|-------------|-----------------------|
 
 ## Introduction
 

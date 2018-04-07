@@ -44,7 +44,7 @@ which is available these days by googling.
 
 ## External Libraries
 
-We used the Digital Sound Interface Kit (**DSIK**), (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. This was a 
+* [**DSIK**](LIBS/DSIK) - we used the Digital Sound Interface Kit (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. This was a 
 very cool library which supported 4-channel MODs in the shareware version, and 16-channel in the registered version. I don't know where
 Carlos is now on the internet, but there are places you can google to download the full package. The music for all games started out as a
 MOD file, and was converted into a DSM file for DSIK. You can convert it back again with [OpenMPT](https://openmpt.org/download) if that's 
@@ -54,28 +54,27 @@ the sort of thing you'd want to do.
 
 Almost all of the other clever library stuff was written by Tom:-
 
-* **TDGRAPH** provides useful drawing routines for GUIs.
-* **TDFONTS** allows Pascal's BGI and CHR (graphics and font) files to be included as objects in an executable. 
-* **TD_256** sets up the pretty mode 13h, (320x200 with 256 colours)
-* **TD_PCX** works with PCX files, which we started clipping graphics from, rather than objectising them.
-* **TD_KEY** sets up a proper keyboard handler for multiple keys at once.
+* [**TDGRAPH**](LIBS/TDGRAPH) provides useful drawing routines for GUIs.
+* [**TDFONTS**](LIBS/TDFONTS) allows Pascal's BGI and CHR (graphics and font) files to be included as objects in an executable. 
+* [**TD_256**](LIBS/TD_256) sets up the pretty mode 13h, (320x200 with 256 colours)
+* [**TD_PCX**](LIBS/TD_PCX) works with PCX files, which we started clipping graphics from, rather than objectising them.
+* [**TD_KEY**](LIBS/TD_KEY) sets up a proper keyboard handler for multiple keys at once.
 
 And one more:
 
-* **MOUSERMW** provided all the mouse clicking and icon routines. This was written by a school friend Rupert Wood, a year above us, 
+* [**MOUSERMW**](LIBS/MOUSERMW) provided all the mouse clicking and icon routines. This was written by a school friend Rupert Wood, a year above us, 
 who did some very good programming and gave us a lot of help getting started. I wonder where he is now...
 
 ## The Games
 
 * [**Oh Wessy**](oh-wessy/) - Tom's variant of Oh Mummy
-* **Shooting Cheddery** - in which you shoot random objects with mini-cheddars.
-* **Shooting Chundery** - in which you shoot drops of acid vom that are falling from outer space.
-* **Slapping Slappery** - in which you slap things scrolling up at you while driving various vehicles.
-* **Shooting Shrubbery** - a multi-screen adventure game with Monty Python influences.
-* **Shooting Ribenaberry** - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
-* **Shooting Teletubbery** - in which you shoot various characters and accumulate huge scores.
+* [**Shooting Cheddery**](sc1-ched) - in which you shoot random objects with mini-cheddars.
+* [**Shooting Chundery**](sc2-chun) - in which you shoot drops of acid vom that are falling from outer space.
+* [**Slapping Slappery**](sc3-slap) - in which you slap things scrolling up at you while driving various vehicles.
+* [**Shooting Shrubbery**](sc4-shrb) - a multi-screen adventure game with Monty Python influences.
+* [**Shooting Ribenaberry**](sc5-rib) - like Breakout, but with ribenaberries. And an adjustably bendy banana obviously.
+* [**Shooting Teletubbery**](sc6-tub) - in which you shoot various characters and accumulate huge scores.
 * [**Smudgelet's Maze**](s-maze/) - a big-maze escape game for up to 2-players, to run on an Amstrad 8086.
 * [**Smudgelet's Maze 2000**](s-maze2k/) - a scrolling version of Smudgelet's Maze with dramatic music for up to 6 players theoretically.
-* **Tom's Day Out** - a lawn-mowing game inspired by Hovver Bovver.
-* **Twittris** - a Tetris clone for up to 3 players.
-
+* [**Tom's Day Out**](toms-day/)- a lawn-mowing game inspired by Hovver Bovver.
+* [**Twittris**](twittris/) - a Tetris clone for up to 3 players.
