@@ -31,7 +31,7 @@ Run SETUP to set up the sound. Sound Blaster, I/O Port 220, IRQ 7 and DMA 1
 
 * Compile the DSIK load unit, TD_256, TD_PCX and TD_KEY first.
 * Load Pascal, File, Change directory to toms-day/SRC
-* Options, Open TWIT.TP
-* Then File, Open, TWITTRIS.PAS. 
-* Check AUDIO_DIR and GFX_DIR are set correctly; prefix with '../' if you want to run from the SRC folder, otherwise don't prefix.
-* Compile with ALT+F9.1
+* Options, Open ``TWIT.TP``
+* Then File, Open, ``TWITTRIS.PAS``
+* Check ``AUDIO_DIR`` and ``GFX_DIR`` are set correctly; prefix with ``'../'`` if you want to run from the SRC folder, otherwise don't prefix.
+* Compile with ALT+F9.
