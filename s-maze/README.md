@@ -38,17 +38,17 @@ SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. (The default
 
 ## Running
 
-* cd s-maze
-* SETUP (if you need to configure sound)
-* SM
+* `cd s-maze`
+* `SETUP` (if you need to configure sound)
+* `SM`
 
 ## Compiling
 
-* Compile the DSIK load unit and TDFonts.
+* Compile the [DSIK](../LIBS/DSIK) load unit and [TDFonts](../LIBS/TDFONTS).
 * Load Pascal, File, Change directory to s-maze\src
-* Options, Open SMUDGE.TP
-* If Pascal is not in C:\TP, change the Unit directories in Options, Directories. And Options, Save.
-* File, Open, SM.PAS
-* Search for audiodir - and use '../AUDIO/' to run inside Pascal, or 'AUDIO/' for release.
+* Options, Open `SMUDGE.TP`
+* If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
+* File, Open, `SM.PAS`
+* Search for audiodir - and use `'../AUDIO/'` to run inside Pascal, or `'AUDIO/'` for release.
 * Alt+F9 (Or Compile menu, Compile)
 
