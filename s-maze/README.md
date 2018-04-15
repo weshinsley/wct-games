@@ -45,7 +45,7 @@ SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. (The default
 ## Compiling
 
 * Compile the [DSIK](../LIBS/DSIK) load unit and [TDFonts](../LIBS/TDFONTS).
-* Load Pascal, File, Change directory to s-maze\src
+* Load Pascal, File, Change directory to `s-maze\src`
 * Options, Open `SMUDGE.TP`
 * If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
 * File, Open, `SM.PAS`

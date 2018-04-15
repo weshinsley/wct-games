@@ -105,18 +105,18 @@ use the following keys...
 ## Running
 
 * Run DosBox.
-* cd sc5-rib
-* SETUP (if you need to configure sound)
-* RIBENA (for the game)
-* RIBEDIT (for the level editor)
+* `cd sc5-rib`
+* `SETUP` (if you need to configure sound)
+* `RIBENA` (for the game)
+* `RIBEDIT` (for the level editor)
 
 ## Compiling
 
-* Compile the DSIK load unit, MOUSERMW, TD_256, TD_PCX and TD_KEY first.
-* Load Pascal, File, Change directory to sc5-rib/SRC
-* Options, Open RIBENA.TP
-* Then File, Open, BERRYBIN.PAS, Alt+F9 to compile, Alt+F3 to close.
-* Repeat for BERRYB2.PAS, and RIBEDIT.PAS
-* For RIBENA.PAS, search for AUDIO_DIR - set to '../AUDIO/' to test inside Pascal, or 'AUDIO/' for release.
-* Then compile RIBENA.PAS.
-* Ignore MAKEDAT.PAS, unless you'd like to create a brand new level file.
+* Compile the [DSIK](../LIBS/DSIK) `load` module, [MOUSERMW](../LIBS/MOUSERMW), [TD_256](../LIBS/TD_256), [TD_PCX](../LIBS/TD_PCX) and [TD_KEY](../LIBS/TD_KEY) first.
+* Load Pascal, File, Change directory to `sc5-rib/SRC`
+* Options, Open `RIBENA.TP`
+* Then File, Open, `BERRYBIN.PAS`, Alt+F9 to compile, Alt+F3 to close.
+* Repeat for `BERRYB2.PAS`, and `RIBEDIT.PAS`
+* For `RIBENA.PAS`, search for `AUDIO_DIR` - set to `'../AUDIO/'` to test inside Pascal, or `'AUDIO/'` for release.
+* Then compile `RIBENA.PAS`.
+* Ignore `MAKEDAT.PAS`, unless you'd like to create a brand new level file.

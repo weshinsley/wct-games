@@ -17,21 +17,21 @@ pixel problems of playing 320x200 made it not as attractive as we'd hoped.
 ## Audio
 
 A bit like the music to various Holiday Programs on the BBC on the 90s.
-Run SETUP to set up the sound. Sound Blaster, I/O Port 220, IRQ 7 and DMA 1
+Run `SETUP` to set up the sound. Sound Blaster, I/O Port 220, IRQ 7 and DMA 1
 (the defaults) work nicely for me.
 
 ## Running
 
 * Run DosBox
-* cd twittris
-* SETUP if you need to setup sound.
-* TWITTRIS
+* `cd twittris`
+* `SETUP` if you need to setup sound.
+* `TWITTRIS`
 
 ## Compiling
 
-* Compile the DSIK load unit, TD_256, TD_PCX and TD_KEY first.
+* Compile the [DSIK](../LIBS/DSIK) `load` module, [TD_256](../LIBS/TD_256), [TD_PCX](../LIBS/TD_PCX) and [TD_KEY](../LIBS/TD_KEY) first.
 * Load Pascal, File, Change directory to toms-day/SRC
-* Options, Open ``TWIT.TP``
-* Then File, Open, ``TWITTRIS.PAS``
-* Check ``AUDIO_DIR`` and ``GFX_DIR`` are set correctly; prefix with ``'../'`` if you want to run from the SRC folder, otherwise don't prefix.
+* Options, Open `TWIT.TP`
+* Then File, Open, `TWITTRIS.PAS`
+* Check `AUDIO_DIR` and `GFX_DIR` are set correctly; prefix with `../` if you want to run from the SRC folder, otherwise don't prefix.
 * Compile with ALT+F9.

@@ -4,7 +4,7 @@ The third and final game, written some time in 1995, for Merrick's 17th
 birthday probably. Merrick's only mockable attribute apparently, was a
 slightly higher than average hair-line, but in a boys-only secondary
 school, that is ample ammunition to write a game. Tom wrote this epic
-adventure entirely, revised (probably for TDfonts) in June 1996.
+adventure entirely, revised (probably for [TDfonts](../LIBS/TDFONTS)) in June 1996.
 
 ## The Quick Plot
 
@@ -61,20 +61,20 @@ and Evil, the War of the Slaps... GOOD LUCK!
 
 ## Running
 
-* cd sc3-slap
-* slap
+* `cd sc3-slap`
+* `slap`
 
 ## Compiling
 
-* Compile the MOUSERMW and TDFONTS libraries.
-* Load Pascal, File, Change directory to sc3-slap\SRC\GAME
-* Options, Open SLAP.TP
-* If Pascal is not in C:\TP, change the Unit directories in Options, Directories. And Options, Save.
-* File, Open, SS_GFX0.PAS and compile with Alt+F9. Close with Alt+F3.
-* The same for SS_GFXA.PAS.
-* And the same for CHEDDER3.PAS.
+* Compile the [MOUSERMW](../LIBS/MOUSERMW) and [TDFONTS](../LIBS/TDFONTS) libraries.
+* Load Pascal, File, Change directory to `sc3-slap\SRC\GAME`
+* Options, Open `SLAP.TP`
+* If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
+* File, Open, `SS_GFX0.PAS` and compile with Alt+F9. Close with Alt+F3.
+* The same for `SS_GFXA.PAS`.
+* And then the same for `CHEDDER3.PAS`.
 * We should have learned how to do makefiles in Pascal, but we didn't.
 
-This will compile the main executable into the TPU folder. There are two
+This will compile the main executable into the `TPU` folder. There are two
 more introductions, which I've got partial source code for, and some spare
-fragments of other code that are probably obselete.
+fragments of other code that are probably obsolete.

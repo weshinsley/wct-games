@@ -32,18 +32,18 @@ be completely chundered, and the end of the world really will be nigh.
 
 ## Running
 
-* cd sc2-chun
-* CHED2
+* `cd sc2-chun`
+* `CHED2`
 
 ## Compiling
 
-* Compile the MOUSERMW and TDFONTS libraries.
-* Load Pascal, File, Change directory to sc2-chun\SRC
-* Options, Open CHUND.TP
-* If Pascal is not in C:\TP, change the Unit directories in Options, Directories. And Options, Save.
-* File, Open, CHEDDER2.PAS
+* Compile the [MOUSERMW](../LIBS/MOUSERMW) and [TDFONTS](../LIBS/TDFONTS) libraries.
+* Load Pascal, File, Change directory to `sc2-chun\SRC`
+* Options, Open `CHUND.TP`
+* If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
+* File, Open, `CHEDDER2.PAS`
 * Alt+F9 (Or Compile menu, Compile)
 
-This will compile the main executable into the TPU folder - the colourful
-text reader I no longer have source code for. And there's also a PCX file 
+This will compile the main executable into the `TPU` folder - the colourful
+text reader I no longer have source code for. And there's also a `PCX` file 
 converted to an executable displayer, possibly made by DeluxePaint.

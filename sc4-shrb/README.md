@@ -31,9 +31,8 @@ Good luck!
 
 ## Running
 
-* Run DosBox
-* cd wct-games\sc4-shrb
-* shrub
+* `cd wct-games\sc4-shrb`
+* `shrub`
 
 ## Compiling
 

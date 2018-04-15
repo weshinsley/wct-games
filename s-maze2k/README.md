@@ -60,23 +60,23 @@ you can't go back to a square you've already visited.
 
 The music is somewhat inspired from the original 8086 Smudgelet's Maze, and
 adds to the panic of the situation... DosBox wires up the sound card quite 
-well. Run SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. 
+well. Run `SETUP.EXE`, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. 
 (The defaults)
 
 ## Running
 
-* cd s-maze2k
-* SETUP (if you need to configure sound)
-* SM2
+* `cd s-maze2k`
+* `SETUP` (if you need to configure sound)
+* `SM2`
 
 ## Compiling
 
-* Compile the DSIK load unit, TD_256, TD_PCX, TD_KEY first.
-* Load Pascal, File, Change directory to s-maze2k\src
-* Options, Open SM2K.TP
-* File, Open, NEWMAZE.PAS, Alt+F9 to compile, Alt+F3 to close.
-* File, Open, SM2.PAS
-* At the top, set AUDIO and GFX to '..\AUDIO\' and '..\GFX\' to run inside 
-Pascal, or just 'AUDIO\' and 'GFX\' for the release executable.
+* Compile the [DSIK](../LIBS/DSIK) `LOAD` module, [TD_256](../LIBS/TD_256), [TD_PCX](../LIBS/TD_PCX), [TD_KEY](../LIBS/TD_KEY) first.
+* Load Pascal, File, Change directory to `s-maze2k\src`
+* Options, Open `SM2K.TP`
+* File, Open, `NEWMAZE.PAS`, Alt+F9 to compile, Alt+F3 to close.
+* File, Open, `SM2.PAS`
+* At the top, set AUDIO and GFX to `'..\AUDIO\'` and `'..\GFX\'` to run inside 
+Pascal, or just `'AUDIO\'` and `'GFX\'` for the release executable.
 * Alt+F9 (Or Compile menu, Compile)
 

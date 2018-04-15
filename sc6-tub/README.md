@@ -33,14 +33,14 @@ I/O Port 220, IRQ 7 and DMA 1. (The defaults)
 ## Running
 
 * Run DosBox.
-* cd sc6-tub
-* SETUP to configure sound
-* TUB
+* `cd sc6-tub`
+* `SETUP` to configure sound
+* `TUB`
 
 ## Compiling
 
-* Compile the DSIK load unit, MOUSERMW, TD_256, TD_PCX and TD_KEY first.
-* Load Pascal, File, Change directory to sc6-tub/SRC
-* Options, Open TUB.TP
-* Then File, Open, TUB.PAS. Check the GFX and AUDIO are correct, depending on whether you want to run in Pascal, or generate a release EXE.
+* Compile the [DSIK](../LIBS/DSIK) `load` module, [MOUSERMW](../LIBS/MOUSERMW), [TD_256](../LIBS/TD_256), [TD_PCX](../LIBS/TD_PCX) and [TD_KEY](../LIBS/TD_KEY) first.
+* Load Pascal, File, Change directory to `sc6-tub/SRC`
+* Options, Open `TUB.TP`
+* Then File, Open, `TUB.PAS`. Check the `GFX` and `AUDIO` are correct, depending on whether you want to run in Pascal, or generate a release EXE.
 * Alt+F9 to compile.

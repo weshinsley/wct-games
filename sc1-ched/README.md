@@ -3,7 +3,7 @@
 Written by Wes and Tom, for Chris's 17th birthday in March 1995. Chris
 happened to like peanuts and mini cheddars, which seemed ample reason to
 write a game, based on Shooting Gallery which was doing the rounds at
-that time. This was our first game, revised in June 1996 with TDFonts I think, and then again
+that time. This was our first game, revised in June 1996 with [TDFonts](../LIBS/TDFONTS) I think, and then again
 in 2000 to do something to do with the speed on faster Pentiums at that time.
 
 ## The Plot
@@ -55,20 +55,20 @@ Cheddery has to pay him for.)
 
 ## Running
 
-* cd sc1-ched
-* CHED
+* `cd sc1-ched`
+* `CHED`
 
 ## Compiling
 
-* Compile the MOUSERMW, TDGRAPH and TDFONTS libraries.
-* Load Pascal, File, Change directory to sc1-ched\SRC
-* Options, Open CHED.TP
-* If Pascal is not in C:\TP, change the Unit directories in Options, Directories. And Options, Save.
-* File, Open, CHEDDER1.PAS
+* Compile the [MOUSERMW](../LIBS/MOUSERMW), [TDGRAPH](../LIBS/TDGRAPH) and [TDFONTS](../LIBS/TDFONTS) libraries.
+* Load Pascal, File, Change directory to `sc1-ched\SRC`
+* Options, Open `CHED.TP`
+* If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
+* File, Open, `CHEDDER1.PAS`
 * Alt+F9 (Or Compile menu, Compile)
 
-This will compile the main executable into the TPU folder - the other things 
-that are run as part of the CHED batch file are a PCX file with automatic 
+This will compile the main executable into the `TPU` folder - the other things 
+that are run as part of the `CHED` batch file are a `PCX` file with automatic 
 displayer (I forget how we made that - possibly it's an option in 
 DeluxePaint?). And also an automatic text scroller that reads our text 
 file of nonsense. I don't have source code for either of those - perhaps I

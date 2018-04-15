@@ -26,16 +26,17 @@ Hmm.
 ## Running
 
 * Run DosBox
-* cd toms-day
-* SETUP to configure sound
-* TDA for the game
-* TDALEV  for the level editor
+* cd `toms-day`
+* `SETUP` to configure sound
+* `TDA` for the game
+* `TDALEV`  for the level editor
+
 ## Compiling
 
-* Compile the DSIK load unit, MOUSERMW, TD_256, TD_PCX and TD_KEY first.
-* Load Pascal, File, Change directory to toms-day/SRC
-* Options, Open TDA.TP
-* Then File, Open, FLIPPERS.PAS. ALT-F9 to compile, ALT-F3 to close.
-* Repeat for TDA_2.PAS, TDA_3.PAS, TDA_4.PAS.
-* Repeat for TDALEV.PAS, but check the constant LEV_DIR - if running from the SRC folder, prefix with "../" - but not for release EXE.
-* Finally, compile TDA.PAS - but check that the constants AUDIO_DIR, GFX_DIR, and LEV_DIR are set. For running in the SRC folder, prefix with '../' - but not for release EXE.
+* Compile the [DSIK](../LIBS/DSIK) `load` module, [MOUSERMW](../LIBS/MOUSERMW), [TD_256](../LIBS/TD_256), [TD_PCX](../LIBS/TD_PCX) and [TD_KEY](../LIBS/TD_KEY) first.
+* Load Pascal, File, Change directory to `toms-day/SRC`
+* Options, Open `TDA.TP`
+* Then File, Open, `FLIPPERS.PAS`. ALT-F9 to compile, ALT-F3 to close.
+* Repeat for `TDA_2.PAS`, `TDA_3.PAS`, `TDA_4.PAS`.
+* Repeat for `TDALEV.PAS`, but check the constant `LEV_DIR` - if running from the SRC folder, prefix with `../` - but not for release EXE.
+* Finally, compile `TDA.PAS`, but check that the constants `AUDIO_DIR`, `GFX_DIR`, and `LEV_DIR` are set. For running in the SRC folder, prefix with `../` - but not for release EXE.
