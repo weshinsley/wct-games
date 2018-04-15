@@ -35,12 +35,13 @@ of emulation, and maybe the artefacts of scaling the original screen resolution.
 ## Compiling (if you want)
 
 All the games are compiled, and you can run the EXEs in each folder. If you are anxious to compile them yourself, you'll need Turbo Pascal 7 
-which is available these days by googling. 
-* Run the extended version (ie, BIN\TPX.EXE, not BIN\TURBO.EXE), as these games need more than 640k to compile. 
-* File, Change Directory, to the SRC folder of the game (or library) you want to compile.
+which is available these days by googling. In general:
+
+* Run the extended version (ie, `BIN\TPX.EXE`, not `BIN\TURBO.EXE`), as these games need more than 640k to compile. 
+* File, Change Directory, to the `SRC` folder of the game (or library) you want to compile.
 * Options, Open the Project Preferences (.TP) file, to set the paths, includes, and compiler options.
-* File, Open, each .PAS file that needs compiling, and Compile (Alt+F9). TPUs and EXEs arrive in the TPU folder.
-* To run code inside Pascal, you may need to adjust path variables (eg, AUDIO_DIR, GFX_DIR) near the top of the code, and prefix with '..\')
+* File, Open, each .PAS file that needs compiling, and Compile (Alt+F9). TPUs and EXEs arrive in the `TPU` folder.
+* To run code inside Pascal, you may need to adjust path variables (eg, `AUDIO_DIR`, `GFX_DIR`) near the top of the code, and prefix with `..\`)
 
 ## External Libraries
 

@@ -34,8 +34,8 @@ to the nearest second. A nice touch.
 ## Running
 
 * Run DosBox
-* cd wct-games\oh-wessy
-* OW
+* `cd wct-games\oh-wessy`
+* `OW`
 
 ## Compiling
 
