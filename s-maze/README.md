@@ -49,6 +49,6 @@ SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. (The default
 * Options, Open `SMUDGE.TP`
 * If Pascal is not in `C:\TP`, change the Unit directories in Options, Directories. And Options, Save.
 * File, Open, `SM.PAS`
-* Search for audiodir - and use `'../AUDIO/'` to run inside Pascal, or `'AUDIO/'` for release.
+* Search for `audiodir` - and set to `'../AUDIO/'` to run inside Pascal, or `'AUDIO/'` for release.
 * Alt+F9 (Or Compile menu, Compile)
 

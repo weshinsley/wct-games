@@ -7,7 +7,7 @@ Functions for handling PCX files.
 ## Compiling
 
 * In DosBox...
-* File, Change directory to LIBS/TD_PCX/SRC
-* Options, Open TD_PCX.TP
-* File, Open TD_PCX.PAS, and compile with ALT+F9.
+* File, Change directory to `LIBS/TD_PCX/SRC`
+* Options, Open `TD_PCX.TP`
+* File, Open `TD_PCX.PAS`, and compile with ALT+F9.
 

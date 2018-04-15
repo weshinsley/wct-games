@@ -79,15 +79,16 @@ to aid your progress. Good luck commando.
 
 ## Audio
 
-Epic music in DSIK - and also some sound effects produced by Wes and his
+Epic music in [DSIK](../LIBS/DSIK) - and also some sound effects produced by Wes and his
 flatmates in London. DosBox wires up the sound card quite 
-well. Run SETUP.EXE, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. 
+well. Run `SETUP.EXE`, and choose Sound Blaster, I/O Port 220, IRQ 7 and DMA 1. 
 (The defaults)
 
 ## The Level Editor
 
-You can edit levels 21 onwards in the RIBENA.DAT file. Run RIBEDIT.EXE and
+You can edit levels 21 onwards in the `RIBENA.DAT` file. Run `RIBEDIT.EXE` and
 use the following keys...
+
 * **1** - Choose berry colour.
 * **2** - What do berries do when you hit them:
   * **explode**: fall out of the sky.

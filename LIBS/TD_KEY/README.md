@@ -8,7 +8,7 @@ Pascal was able to do on its own.
 ## Compiling
 
 * In DosBox...
-* File, Change directory to LIBS/TD_KEY/SRC
-* Options, Open TD_KEY.TP
-* File, Open TD_KEY.PAS, and compile with ALT+F9.
+* File, Change directory to `LIBS/TD_KEY/SRC`
+* Options, Open `TD_KEY.TP`
+* File, Open `TD_KEY.PAS`, and compile with ALT+F9.
 
