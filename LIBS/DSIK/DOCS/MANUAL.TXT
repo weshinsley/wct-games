@@ -1,0 +1,1292 @@
+
+                  Digital Sound Interface Kit (DSIK)
+                          Version 1.01a
+
+                       ÄÄ User's Manual ÄÄ
+
+                      (C) 1994  Carlos Hasan
+
+
+Contents:
+
+        1.      Introduction
+        1.1     What's in this Manual?
+        1.2     Hardware Requirements
+        1.3     Contacting the Author
+
+        2.      Tutorial
+        2.1     Initializing DSIK
+        2.2     Playing Digital Samples
+        2.3     Playing a Music Module
+        2.4     Playing Sound Effects over Music
+
+        3.      Programming Guide
+        3.1     Initializing DSIK
+        3.2     Openining Voice Channels
+        3.3     Mixing Voices
+        3.4     Playing Music
+        3.4.1   Loading a Module
+        3.4.2   Playing the Module
+        3.4.3   Stopping the Module
+        3.5     Sound Effects
+        3.5.1   Channels
+        3.5.2   Available Channels
+        3.5.3   Playing Sounds
+        3.5.4   Altering the Playing Sounds
+        3.6     Digital Sound Module Format
+        3.6.1   Converting Modules
+        3.7     Getting Information from DSIK
+        3.8     Interrupts
+        3.9     Using Timer Services
+
+        4.      Reference Guide
+        4.1     Functions
+        4.2     Structures
+
+
+
+Chapter 1. Introduction
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    The Digital Sound Interface Kit (DSIK) is an interface library by which
+    you can play digital music and sound effects on PCs, and is currently
+    available for Borland C++ and Borland Pascal compilers.
+
+1.1 What's in this Manual?
+
+    This manual has three parts: Tutorial, Programming Guide and Reference
+    Guide sections. The tutorial section of this manual will show you only
+    the most basic functions of DSIK. You should read the Programming Guide
+    section to learn more about the DSIK's capabilities. For more detailed
+    information about every function, structure and equates defined in DSIK
+    you should read the Reference Guide section of this manual.
+
+1.2 Hardware and Software Requirements
+
+    In order to work with DSIK you need at least an 386SX and a soundcard.
+    The supported soundcards are Sound Blaster, Sound Blaster Pro, Sound
+    Blaster 16, Gravis Ultrasound and all cards that are 100% compatible
+    with any of the above.
+    The DSIK library was compiled with Borland Pascal version 7.0, but it
+    should work perfectly with Turbo Pascal version 7.0.
+
+1.3 Contacting the Author
+
+    If you encounter problems, find a bug in this package or want to suggest
+    something, use the following Internet email addresses:
+
+        Carlos Hasan
+        chasan@cec.uchile.cl
+        cvaldovi@dcc.uchile.cl
+
+
+Chapter 2. Tutorial
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    This tutorial will show you how to use DSIK in your own applications
+    by providing some simple example programs. These example programs
+    will be built from scratch and new features will be added step by
+    step through the tutorial.
+
+2.1 Initializing DSIK
+
+    Before using any of the DSIK's routines it has to be initialized. First
+    you need your soundcard hardware parameters. To ease things there is an
+    external program called SETUP which will ask to the user the soundcard
+    parameters and will save them into your disk. After, you can load these
+    hardware parameters from disk in your own programs. When you have all
+    the soundcard parameters, call the routine DSMInit to initialize the
+    DSIK sound system.
+    Now the program would be able to play sounds on different channels,
+    and music modules of course.
+
+    Here is an example code for initializing DSIK:
+
+    uses Crt,Sound;
+    var
+      Card:DSMCard;
+    begin
+      if DSMLoadSetup(Card) then begin
+        writeln('please run SETUP.EXE to configure.');
+        Halt(1);
+      end;
+      if DSMInit(Card) then begin
+        writeln('error initializing DSIK.');
+        Halt(1);
+      end;
+      :
+      :
+      DSMDone;
+    end.
+
+    If everything went alright and DSMInit found the specified soundcard it
+    returns false. After DSMInit has initialized the system, you must call
+    the deinit routine DSMDone before exiting your program.
+
+2.2 Playing Digital Samples
+
+    DSIK is now initialized and waits for your instructions. But first you
+    have to setup the amount of voices you are going to use and the master
+    volume level for all those channels:
+
+    DSMSetupVoices(4,96);
+
+    Now you have four independant channels to play sounds. To play a digital
+    sample (or instrument) you have to load the sample from disk, then pass
+    it to DSMPlaySample to start playing the sample. DSIK currently supports
+    standard RIFF/WAVE digital sample files which can be loaded from disk
+    using the routine DSMLoadSample.
+
+    uses Crt,Sound,Load;
+    var
+      Card:DSMCard;
+      Drum:PDSMInst;
+    begin
+      if DSMLoadSetup(Card) or DSMInit(Card) then Halt(1);
+      DSMSetupVoices(4,96);
+      Drum := DSMLoadSample('DRUM.WAV',0);  { load sample from disk }
+      DSMPlaySample(0,Drum);                { play at default frequency }
+      while not keypressed do DSMPoll;      { wait any key }
+      DSMStopSample(0);                     { stop voice }
+      DSMFreeSample(Drum);                  { free sample from memory }
+      DSMDone;
+    end;
+
+    The previous code loads a digital instrument from disk and plays it on
+    the first audio channel at the default frequency and volume.
+
+2.3 Playing a Music Module
+
+    Module is a music file format first used in the Amiga computer. There are
+    many music formats around like: ProTracker, FastTracker, Scream Tracker,
+    Composer 669 and MultiTracker file formats. But DSIK only knows the DSM
+    module format, so to play MODs, STMs, S3Ms, 669s, and MTMs they need to
+    be converted into DSM format using the utility program CONV.EXE included
+    in the DSIK package.
+
+    Here is an simple example program to play an DSM module:
+
+    uses Crt,Sound,Load;
+    var
+      Card:DSMCard;
+      Module:PDSM;
+    begin
+      if DSMLoadSetup(Card) or DSMInit(Card) then Halt(1);
+      Module := DSMLoad('EXAMPLE.DSM',0);
+      DSMSetupVoices(Module^.Song.NumChannels,Module^.Song.MasterVolume);
+      DSMPlayMusic(Module);
+      while not keypressed do DSMPoll;
+      DSMStopMusic;
+      DSMFreeModule(Module);
+      DSMDone;
+    end;
+
+    When running the program it should play the EXAMPLE.DSM module. If there
+    are problems, check that the module exists in the current directory.
+
+2.4 Playing Sound Effects over Music
+
+    With DSIK it's possible to play sound effects over the music. All you have
+    to do is to open more channels than your module needs. The extra channels
+    can be used to play sound effects. Remember that DSIK always uses the first
+    channels from the beginning to play the music. For example, for an module
+    which uses 4 channels, the channels 0, 1, 2 and 3 will be used to play the
+    module. You can use all the unused open channels to play sound effects.
+
+
+Chapter 3. Programming Guide
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    In this section you will learn more about all the DSIK's capabilities.
+    It describes not only what DSIK can do, but also how. For more details
+    about every function and structures defined in DSIK you should read the
+    Reference Guide section of this manual.
+
+3.1 Initializing DSIK
+
+    The first thing you should do to initialize DSIK is to get the soundcard
+    hardware parameters (I/O port, IRQ line, DMA channel, mixing rate). The
+    structure DSMCard must be filled with these parameters:
+
+    type
+      DSMCard = record
+        CardID  : byte;             { Sound card ID }
+        IOAddr  : word;             { Port address  }
+        IRQNum  : byte;             { IRQ line      }
+        DRQNum  : byte;             { DMA channel   }
+        MixRate : word;             { Mixing rate   }
+      end;
+
+    The identification number ID is unique for each card. Here is a list of
+    the identification numbers for the currently supported soundcards:
+
+    const
+      ID_NONE     = 0;              { No soundcard       }
+      ID_SB       = 1;              { Sound Blaster      }
+      ID_SB201    = 2;              { Sound Blaster 2.01 }
+      ID_SBPRO    = 3;              { Sound Blaster Pro  }
+      ID_SB16     = 4;              { Sound Blaster 16   }
+      ID_GUS      = 5;              { Gravis Ultrasound  }
+
+    There are parameters which are unused for some soundcards (for example,
+    the GUS soundcard does not requires the mixing rate). Also, the virtual
+    soundcard ID_NONE is useful for users without any sound device, because
+    your program can use all the DSIK functions without problems, but no
+    sound will be heard though.
+
+    When the DSMCard structure is filled, call DSMInit with it and check the
+    returned value. If the value is false, then everything went alright and
+    DSIK is initialized. Otherwite an error occured.
+
+    After initializing DSIK you should make sure that DSMDone is called upon
+    exit. The easiest way to do it is to use exit procedures using the Turbo
+    and Borland Pascal ExitProc mechanism.
+
+3.2 Opening Voice Channels
+
+    Now DSIK is initialized, but you can't play any sound with it yet. First
+    you will have to call DSMSetupVoices to specify the amount of channel
+    voices your program needs and the global master volume level:
+
+    DSMSetupVoices(8,96);
+
+    The above code will open 8 channel voices and sets the master volume
+    level to 96, which is a pretty nice value for that amount of open
+    channels. Actually, the master volume parameter is only used in the
+    Sound Blaster cards and has no effect in the GUS soundcard.
+
+3.3 Mixing Voices
+
+    When everything is initialized it's time to start playing some sounds.
+    Before any sound can be heard it has to be loaded from disk. Because
+    DSIK supports many more channels than your soundcard supports (except
+    for the GUS), DSIK has to combine many channels into a single channel.
+    This process is called digital mixing.
+
+    DSIK lets you do the mixing whenever you want to do it. It does not
+    force you to use the timer interrupt, all that DSIK requires is to call
+    the function DSMPoll frequently. Actually this is not required if you are
+    using the GUS soundcard which uses his own interrupt service to poll the
+    sound system.
+
+    To play music and sound effects in background, you only need to call
+    DSMPoll regularly. About 50 or 70 times per second should be enough
+    in most cases. For higher mixing rates you need to call this routine
+    more times than for lower mixing rates.
+
+    If you want a timer interrupt to handle all the mixing, you can easily
+    hook the DSMPoll into a timer interrupt service:
+
+    uses Crt,Sound,Load,TS;
+    var
+      Card:DSMCard;
+      Module:PDSM;
+    begin
+      if DSMLoadSetup(Card) or DSMInit(Card) then Halt(1);
+      TSInit;
+      TSSetRate(70);
+      TSSetRoutine(DSMPoll);
+      :
+      :
+      TSDone;
+      TSRestoreTime;
+      DSMDone;
+    end;
+
+    The previous code will use the timer interrupt to call DSMPoll 70 times
+    per second. Notice that the BIOS clock will be updated while using the
+    timer services. Anyway, you may call TSRestoreTime to update the clock
+    and date (this routine uses the CMOS real time clock to update the
+    software BIOS clock and date).
+
+    Here is a short summary of how to initialize DSIK:
+
+    - Load the soundcard parameters into the DSMCard structure.
+    - Call DSMInit to initialize (be sure to call DSMDone before
+      exiting your program).
+    - Select the maximum number amount of simultaneos channels
+      and the master volume level with DSMSetupVoices.
+
+3.4 Playing Music
+
+    After DSIK has been setup to play sounds, you are allowed to play music
+    modules. As DSIK uses his own music module format, it's necessary to use
+    the utility CONV.EXE to convert standard MODs, STMs, 669s, S3Ms and MTMs
+    to the DSM file format.
+
+3.4.1 Loading a Module
+
+    Before any music can be played it has to be loaded from the disk into
+    system memory (and soundcard memory for the GUS driver). The module
+    loader is called as follows:
+
+    Module := DSMLoad(FileName,FileOffset);
+
+    The FileName is the full path name to the module and FileOffset is where
+    the module starts itself in the file (its useful if you have packed all
+    your module files into a huge resource file).
+    The loader returns a pointer to a DSM structure. If something went wrong,
+    NIL is returned and the global variable DSMStatus is set to one of the
+    following values to indicate the error occurred:
+
+    const
+      ERR_OK      = 0;              { no error }
+      ERR_NORAM   = 1;              { not enough system memory }
+      ERR_NODRAM  = 2;              { not enough soundcard memory }
+      ERR_NOFILE  = 3;              { module/sample file not found }
+      ERR_FORMAT  = 4;              { invalid file format }
+      ERR_ACCESS  = 5;              { file corrupted }
+
+    The DSM structure contains all the information about the module, so it
+    is totally possible to load multiple modules into memory.
+
+3.4.2 Playing the Module
+
+    When the module has been loaded into memory it can be played with a
+    single function call:
+
+    DSMPlayMusic(Module);
+
+    The parameter is a pointer to a variable of type DSM. IF you have set up
+    DSIK correctly and mixing routines are called frequently, you should hear
+    the music playing in background. If you don't hear any music and no error
+    was detected, then something went wrong during initialization (probably
+    the soundcard hardware parameters are wrong).
+
+3.4.3 Stopping the Module
+
+    If you want to stop the module which is currently being played, call the
+    routine DSMStopMusic. The module is always played with looping, which
+    means that it will never end until DSMStopMusic is called.
+
+3.5 Sound effects
+
+    Playing modules in the background is a thing that can be achieved with
+    DSIK, but also you can play sound effects simultaneous with music.
+
+3.5.1 Channels
+
+    First you need to know the amount of channels that your program will
+    need to play the music and sound effects. For example, if you are going
+    to play a 4 channels module and also you want stereo sound effects, you
+    need to open 6 channels (four for music and two for the sound effect
+    channels). To open the desired amount of channels you does:
+
+    DSMSetupVoices(NumChannels,MasterVolume);
+
+    The first parameter is the number of channels you want, and the second
+    parameter is the master volume level. DSIK currently supports up to 16
+    different channels, and they are zero based. That means that the first
+    voice channel number is 0, the second is 1, and so on.
+
+    DSMSetupVoices can be called multiple times. However, it can't be called
+    while music or sound effects are being played. So be sure to stop all
+    the channels before changing the amount of channels.
+
+    If you try to call DSMSetupVoices while the system is playing music or
+    sound effects, you will hear a small crack and the channel frequencies
+    will be wrong for a while if you are using the GUS soundcard.
+
+3.5.2 Available Channels
+
+    You have opened six channels and DSIK is playing a four channel module,
+    so the channels four and five are available for your own sound effects.
+    DSIK always uses the first channels starting from zero, so you can be
+    sure that playing a sample on channel four or five will not interfere
+    with the music.
+
+3.5.3 Playing Sounds
+
+    When you want to play a sample, you must load it from disk. The function
+    DSMLoadSample loads standard RIFF/WAVE files from disk. If you want to
+    write your own sample loader for a different sample file format, do the
+    following basic steps:
+
+    - Allocate memory for the sample
+    - Load the sample into memory
+    - Create a DSMInst structure for it
+    - Upload the sample to the soundcard memory and release it from
+      system memory, if the current soundcard has on board memory.
+
+    To learn more about how to load samples into memory, look at the DSIK
+    loading routine sources included in the package.
+
+    The DSMInst structure contains all the information about a sample
+    instrument. Here is the definition of this structure:
+
+    type
+      DSMInst = record
+        FileName    : array [0..12] of char;
+        Flags       : word;
+        Volume      : byte;
+        Length      : dword;
+        LoopStart   : dword;
+        LoopEnd     : dword;
+        Address     : pointer;
+        MidCRate    : word;
+        Period      : word;
+        SampleName  : array [0..27] of char;
+      end;
+
+    After the sample has been loaded in memory, you can play it calling
+    the DSMPlaySample function:
+
+    DSMPlaySample(Voice,Sample);
+
+    where Voice is the channel number and Sample is a pointer to a DSMInst
+    sample structure. This function will play the sample at the default
+    frequency and volume specified in the DSMInst sample structure (fields
+    Period and Volume).
+
+    DSIK internally uses period values instead of frequencies. The formula
+    to translate frequency values to periods is:
+
+    Period = 8363*428/Hertz
+
+    Also, DSIK uses volume levels from 0 to 64. These parameters come from
+    the Amiga computer and the standard MOD ProTracker file format.
+
+3.5.4 Altering the Playing Sounds
+
+    Now that the sample is being played, it would be nice to change the
+    frequency and the volume of the sample. DSIK has functions to make it
+    possible. Changing the period and volume is as simple as calling:
+
+    DSMSetPeriod(Voice,Period);
+    DSMSetVolume(Voice,Volume);
+
+    Also you can change the channel panning (or balance):
+
+    DSMSetBalance(Voice,Balance);
+
+    where Balance is a number between 0 (left panned) and 128 (right panned),
+    also you can use surround effects setting the balance to 228. There some
+    useful equates which you can use to set the balance or panning:
+
+    const
+      PAN_LEFT    = $00;            { left panning    }
+      PAN_RIGHT   = $80;            { right panning   }
+      PAN_DOLBY   = $A4;            { surround effect }
+
+    Notice that this routine will take effect only in stereo cards, also the
+    surround effect works only in SB cards currently.
+
+3.6 Digital Sound Module Format (DSM)
+
+    DSIK uses his own music module file format. It was designed to cope with
+    a variety of different module formats like MOD, STM, 669, S3M, and MTM.
+    It would have been very hard to write a system that supports all those
+    module formats, so I have made a system that supports just one format,
+    but with a utility to convert other module formats into this format
+    called Digital Sound Module Format, or DSM for short.
+
+3.6.1 Converting Modules
+
+    As DSIK only supports the DSM format, you need to convert MODs, STMs,
+    669s, S3Ms and MTMs into DSM before playing. You can do this manually
+    using the CONV.EXE utility. Here is the command line syntaxis:
+
+    CONV source[.ext] [dest[.dsm]]
+
+    For example, CONV FEEDBACK.S3M will create the FEEDBACK.DSM module file,
+    which can be played with the DSIK sound system.
+
+3.7 Getting Information from DSIK
+
+    DSIK can give you information about what is going on. There is a routine
+    called DSMGetMusicInfo which returns a pointer to the following structure
+    which hold a lot of useful information:
+
+    type
+      DSMMusicInfo = record
+        ActiveTracks  : word;
+        Tracks        : array [0..Pred(MAXTRACKS)] of Track;
+        OrderPosition : byte;
+        OrderLength   : byte;
+        PatternNumber : byte;
+        PatternRow    : byte;
+        BreakFlag     : byte;
+        Tempo         : byte;
+        TempoCount    : byte;
+        BPM           : byte;
+        CardStatus    : word;
+        PlayStatus    : word;
+        SongPtr       : pointer;
+        SyncMark      : byte;
+      end;
+
+    For synchronization with music you can use the SyncMark field. You need
+    to place special synchronization marks in your modules. You can use
+    Scream Tracker 3.01 command Z to put these marks. The command parameter
+    should be a byte value between 0 and 127. When DSIK encounters this
+    command, it sets the internal variable SyncMark with the value of the
+    command parameter. So the variable SyncMark always have the previous
+    synchronization mark value.
+
+    With the Tracks array you get everything you need to know about what is
+    currently playing. The structure of each Track is defined as:
+
+    type
+      Track = record
+        Note        : byte;
+        Sample      : byte;
+        Volume      : byte;
+        Effect      : word;
+        EQBar       : byte;
+      end;
+
+    The first field is the current note playing on the track. The following
+    field is the current instrument number. For example, if you need to know
+    the name of the current instrument being played in the track, you can use
+    the following code:
+
+    Name := Module^.Inst[TrackPtr^.Sample-1]^.SampleName;
+
+    The Volume field is self explaining, and the Effect field is the current
+    standard Protracker command which is being interpreted.
+    There are other internal fields defined in the Track structure, but that
+    are not actually very useful for the user programs.
+
+3.8 Interrupts
+
+    DSIK doesn't require interrupts. Normally you would poll DSIK in an
+    interrupt occuring about 50-70 times per second, which will decrease
+    the overhead caused by the interrupt service.
+
+3.9 Using Timer Services
+
+    The Timer Service (TS) library was designed for easy handling of the
+    timer interrupt service. This library was included because DSIK doesn't
+    give you any routine to easily play music and sounds in background.
+    With this library you can hook your own routines to be called by the
+    timer interrupt service at the specified rates. For example, you can
+    hook the DSMPoll routine to be called 70 times per second.
+
+    When the TS services are installed the previous BIOS service is called
+    at 18.2 Hz, so the BIOS clock time and date are updated normally. You
+    may call the routine TSRestoreTime before exiting your application to
+    update the BIOS clock and date if required.
+
+    First, to initialize the TS routines you must call TSInit and be sure
+    to call TSDone to deinitialize the routines upon exit. Now you can hook
+    your own service routine with TSSetRoutine and change the timer speed:
+
+    TSSetRoutine(MyTimer);
+    TSSetRate(70);
+
+    This code setup TS to call MyTimer 70 times per second. The speed value
+    is given in times per seconds (or hertz) and the minimum value is 19 Hz.
+    Your timer service routine must preserve all the CPU registers and return
+    using a far stack frame (using the RETF opcode).
+
+
+Chapter 4. Reference Guide
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+
+    This section of the manual will describe the functions, structures and
+    equates defined in DSIK. Functions are listed where each entry contains
+    a detailed description on that particular function.
+
+
+4.1 Functions
+
+DSMInit
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Initializes the DSIK sound system.
+
+Prototype:      function DSMInit(var Card:DSMCard):boolean;
+
+Parameters:     Card    - Soundcard configuration structure.
+
+Returns:        On success, returns false.
+                On error, returns true.
+
+Remarks:        This function must be called to initialize the sound
+                system. When initialized you should make sure that the
+                system will be deinitialized calling DSMDone upon exit.
+
+See Also:       DSMDone.
+
+
+DSMDone
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Shutdown the DSIK sound system.
+
+Prototype:      procedure DSMDone;
+
+Parameters:     None.
+
+Returns:        None.
+
+Remarks:        This function must be called to deinitialize the sound
+                system upon exit. It will close all the audio channels
+                and will close the current soundcard output.
+
+See Also:       DSMInit.
+
+
+DSMPoll
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Polls the DSIK sound system.
+
+Prototype:      procedure DSMPoll;
+
+Parameters:     None.
+
+Returns:        None.
+
+Remarks:        This function should be called regularly to play music
+                and sound effects in background. About 50-70 times per
+                second is enough in most cases.
+                This routine is NOT reentrant, so if you are calling it
+                in background using the timer services, do not try call
+                it in foreground from your program.
+
+See Also:       None.
+
+
+DSMSetupVoices
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Setup the amount of voice channels.
+
+Prototype:      procedure DSMSetupVoices(MaxVoices:word; MastVolume:word);
+
+Parameters:     MaxVoices   - Number of channels to be opened
+                MastVolume  - Master volume level
+
+Returns:        None.
+
+Remarks:        This function must be called before any sound can be
+                played. You can call this function many times, but only
+                while the voice channels are stopped. Currently DSIK
+                supports upto 16 different channels, and the master
+                volume level goes from 0 to 255. Actually the master
+                volume parameter has effect only in SB soundcards.
+                A recommended value for the master volume is:
+                    MastVolume = 384/MaxVoices
+                where MaxVoices is the amount of opened channels.
+
+See Also:       DSMInit, DSMStopVoices.
+
+
+DSMStopVoices
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Stops all the voice channels.
+
+Prototype:      procedure DSMStopVoices;
+
+Parameters:     Note.
+
+Returns:        None.
+
+Remarks:        This routine will stop all the currently active voice
+                channels. You should call this routine before changing
+                the amount of voices with DSMSetupVoices.
+                However, this routine won't stop playing the current
+                music module, to do that you should call DSMStopMusic.
+
+See Also:       DSMSetupVoices, DSMStopMusic.
+
+
+DSMTypeOfRAM
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Returns the type of RAM used by the soundcard driver.
+
+Prototype:      function DSMTypeOfRAM:word;
+
+Parameters:     Note.
+
+Returns:        RAM_NONE    - Driver not initialized
+                RAM_SYSTEM  - Driver uses system memory
+                RAM_CARD    - Driver uses soundcard memory
+
+Remarks:        This is an internal routine used to know which kind of
+                memory the soundcard uses. For example, the GUS soundcard
+                uses his own soundcard memory, so the loading routines
+                will upload the sample digital data to the soundcard
+                and then release it from system memory.
+
+See Also:       DSMAllocSampleData, DSMFreeSampleData.
+
+
+DSMAllocSampleData
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Allocates and uploads the sample to the soundcard memory.
+
+Prototype:      function DSMAllocSampleData(Inst:PDSMInst):boolean;
+
+Parameters:     Inst        - Sample instrument structure
+
+Returns:        On success, returns false.
+                On error, returns true.
+
+Remarks:        This is an internal routine used to allocate and upload
+                the digital sample data to the soundcard. This function
+                has no effect for soundcards which are using only system
+                memory to hold digital samples.
+
+See Also:       DSMTypeOfRAM, DSMFreeSampleData.
+
+
+DSMFreeSampleData
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Frees the sample from the soundcard memory.
+
+Prototype:      procedure DSMFreeSampleData(Inst:PDSMInst);
+
+Parameters:     Inst        - Sample instrument structure
+
+Returns:        None.
+
+Remarks:        This is an internal routine used to free the sample data
+                from the soundcard memory, which was allocated using the
+                DSMAllocSampleData routine.
+
+See Also:       DSMTypeOfRAM, DSMAllocSampleData.
+
+
+DSMPlaySample
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Play a sample instrument.
+
+Prototype:      procedure DSMPlaySample(Voice:word; Inst:PDSMInst);
+
+Parameters:     Voice       - Voice channel number
+                Inst        - Sample instrument structure
+
+Returns:        None.
+
+Remarks:        This routine will play the specified sample into the
+                desired voice channel number at the default frequency
+                and volume, which are included in the sample instrument
+                structure (fields Period and Volume).
+
+See Also:       DSMStopSample, DSMSetPeriod, DSMSetVolume, DSMSetBalance,
+                DSMSetSoundVolume, DSMSetupVoices, DSMStopVoices.
+
+
+DSMStopSample
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Stops a sample instrument.
+
+Prototype:      procedure DSMStopSample(Voice:word);
+
+Parameters:     Voice       - Voice channel number
+
+Returns:        None.
+
+Remarks:        This routine will stop the sample which is being played
+                at the specified channel number.
+
+See Also:       DSMPlaySample, DSMSetPeriod, DSMSetVolume, DSMSetBalance,
+                DSMSetSoundVolume, DSMSetupVoices, DSMStopVoices.
+
+
+DSMSetPeriod
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Changes the channel period value.
+
+Prototype:      procedure DSMSetPeriod(Voice:word; Period:word);
+
+Parameters:     Voice       - Voice channel number
+                Period      - Period value (28-6848)
+
+Returns:        None.
+
+Remarks:        This routine will change the period of the specified voice
+                channel number. You can translate frequency values in hertz
+                to period values using the following formula:
+                    Period = 8363*428/Hertz
+
+See Also:       DSMPlaySample, DSMStopSample, DSMSetVolume, DSMSetBalance,
+                DSMSetSoundVolume, DSMSetupVoices, DSMStopVoices.
+
+
+DSMSetVolume
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Changes the channel volume level.
+
+Prototype:      procedure DSMSetVolume(Voice:word; Volume:word);
+
+Parameters:     Voice       - Voice channel number
+                Volume      - Volume level (0-64)
+
+Returns:        None.
+
+Remarks:        This routine will change the volume of the specified voice
+                channel number. The volume level goes from 0 to 64.
+
+See Also:       DSMPlaySample, DSMStopSample, DSMSetPeriod, DSMSetBalance,
+                DSMSetSoundVolume, DSMSetupVoices, DSMStopVoices.
+
+
+DSMSetBalance
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Changes the channel panning position.
+
+Prototype:      procedure DSMSetBalance(Voice:word; Balance:word);
+
+Parameters:     Voice       - Voice channel number
+                Balance     - Vanning position (0-128,228)
+
+Returns:        None.
+
+Remarks:        This routine will change the panning position of the
+                specified voice channel number. The panning value goes
+                from $00 to $80 (left to right panning) and $A4 for
+                surround effects. Here is a list of defined equates:
+
+                Constant    Value   Meaning
+                ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                PAN_LEFT     $00    Left panning
+                PAN_RIGHT    $80    Right panning
+                PAN_DOLBY    $A4    Surround effect
+
+                This routine has effect only in stereo soundcards.
+
+See Also:       DSMPlaySample, DSMStopSample, DSMSetPeriod, DSMSetVolume,
+                DSMSetSoundVolume, DSMSetupVoices, DSMStopVoices.
+
+
+DSMSetMusicVolume
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Changes the global volume for all the music channels.
+
+Prototype:      procedure DSMSetMusicVolume(Volume:word);
+
+Parameters:     Volume      - Volume level (0-255)
+
+Returns:        None.
+
+Remarks:        This routine will change the global music volume for
+                all the music channels. It's very useful to do fades
+                and for games which are playing sounds over music.
+                Notice that this volume level goes from 0 to 255
+                (not from 0 to 64 like for individual channels).
+
+See Also:       DSMPlayMusic, DSMSetSoundVolume, DSMSetupVoices.
+
+
+DSMSetSoundVolume
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Changes the global volume for the sound effects channels.
+
+Prototype:      procedure DSMSetSoundVolume(Volume:word);
+
+Parameters:     Volume      - Volume level (0-255)
+
+Returns:        None.
+
+Remarks:        This routine will change the global sound effects volume
+                for all the non-music channels. The sound effect channels
+                are those which are not used to play the current music
+                module.
+
+See Also:       DSMPlayMusic, DSMSetMusicVolume, DSMSetupVoices.
+
+
+DSMPlayMusic
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Start playing a music module.
+
+Prototype:      procedure DSMPlayMusic(Module:PDSM);
+
+Parameters:     Module      - Music module address
+
+Returns:        None.
+
+Remarks:        This routine will start playing the music module. You should
+                be sure to have enough channels opened to play the music, or
+                you won't hear some of the music track channels.
+
+See Also:       DSMStopMusic, DSMSetMusicVolume, DSMSetupVoices.
+
+
+DSMStopMusic
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Stops playing the current music module.
+
+Prototype:      procedure DSMStopMusic;
+
+Parameters:     Note.
+
+Returns:        None.
+
+Remarks:        This routine will stop playing the current music module.
+                You must call this routine before calling DSMPlayMusic
+                to play another music module.
+
+See Also:       DSMPlayMusic, DSMSetMusicVolume, DSMSetupVoices.
+
+
+DSMGetMusicStatus
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Returns the current playing status of the music.
+
+Prototype:      function DSMGetMusicStatus:word;
+
+Parameters:     Note.
+
+Returns:        PS_STOPPED  - No music is being played
+                PS_PLAYING  - Music is being played
+
+Remarks:        None.
+
+See Also:       DSMPlayMusic, DSMStopMusic.
+
+
+DSMGetMusicInfo
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Returns the music information structure.
+
+Prototype:      function DSMGetMusicStatus:PDSMMusicInfo;
+
+Parameters:     Note.
+
+Returns:        Static music information structure address.
+
+Remarks:        This routine is useful to get all the information that
+                you will need to know what is going on (tracks data,
+                current pattern, tempo, speed, etc).
+
+See Also:       DSMMusicInfo.
+
+
+DSMLoad
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Loads a DSM music module from disk.
+
+Prototype:      function DSMLoad(FileName:String; FileOffset:dword):PDSM;
+
+Parameters:     FileName    - Full path filename
+                FileOffset  - Start of the module within the file
+
+Returns:        The module address in memory or NIL if an error occurred
+                while loading it from disk.
+
+Remarks:        This routine will load an DSM file from disk. You should
+                convert different file formats like MODs, S3Ms, etc. to
+                DSM files using the CONV.EXE utility.
+                If something went wrong while loading the module file, this
+                function returns NIL and the global variable DSMStatus is
+                set to one of the following values:
+
+                Constant    Value   Meaning
+                ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                ERR_NORAM   1       Not enough system memory
+                ERR_NODRAM  2       Not enough soundcard memory
+                ERR_NOFILE  3       Module file not found
+                ERR_FORMAT  4       Invalid file format
+                ERR_ACCESS  5       File corrupted
+
+See Also:       DSMFree.
+
+
+DSMFree
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Frees a music module from memory.
+
+Prototype:      procedure DSMFree(Module:PDSM);
+
+Parameters:     Module      - Music module
+
+Returns:        None.
+
+Remarks:        This routine will free an DSM module from memory. You
+                cannot free a module while it's being played.
+
+See Also:       DSMLoad.
+
+
+DSMLoadSample
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Loads a WAVE sample instrument file from disk.
+
+Prototype:      function DSMLoadSample(FileName:String;
+                                    FileOffset:dword):PDSMInst;
+
+Parameters:     FileName    - Full path filename
+                FileOffset  - Start of the sample within the file
+
+Returns:        The sample instrument address or NIL if an error occurred
+                while loading it from disk.
+
+Remarks:        This routine will loads an standard RIFF/WAVE sample file
+                from disk. You should convert other sample file formats
+                like VOC, AU, etc. to WAV using any third-party conversion
+                utility.
+                If something went wrong, the function returns NIL and the
+                global variable DSMStatus is set with the error type.
+
+See Also:       DSMFreeSample, DSMLoad.
+
+
+DSMFreeSample
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Frees a sample instrument file from memory.
+
+Prototype:      procedure DSMFreeSample(Inst:PDSMInst);
+
+Parameters:     Inst        - Sample instrument
+
+Returns:        None.
+
+Remarks:        This routine will free the sample instrument from memory.
+                You cannot free it while it's being played.
+
+See Also:       DSMLoadSample.
+
+
+DSMLoadSetup
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Loads the soundcard configuration file from disk.
+
+Prototype:      function DSMLoadSetup(var Card:DSMCard):boolean;
+
+Parameters:     Card        - Soundcard configuration structure
+
+Returns:        On success, returns false.
+                On error, returns true.
+
+Remarks:        This routine will loads the file called SOUND.CFG with
+                the soundcard hardware parameters. This file is created
+                with the external program SETUP.EXE, or calling the
+                function DSMSaveSetup.
+
+See Also:       DSMSaveSetup.
+
+
+DSMSaveSetup
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Function:       Saves the soundcard configuration file to disk.
+
+Prototype:      function DSMSaveSetup(var Card:DSMCard):boolean;
+
+Parameters:     Card        - Soundcard configuration structure
+
+Returns:        On success, returns false.
+                On error, returns true.
+
+Remarks:        This routine will save the soundcard structure to the
+                file called SOUND.CFG.
+
+See Also:       DSMLoadSetup.
+
+
+4.2 Structures
+
+DSM structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  DSM = record
+                    Song        : DSMSong;
+                    Inst        : array [0..Pred(MAXSAMPLES)] of PDSMInst;
+                    Patt        : array [0..Pred(MAXORDERS)] of PDSMPatt;
+                  end;
+
+Function:       DSM is a structure which holds all the information about
+                the music module loaded in memory. This structure is loaded
+                from disk by DSMLoad and is used by DSMPlayMusic.
+
+Fields:         Song        - Main structure which holds the information
+                              about the module music
+                Inst        - List of sample instruments used by the module
+                Patt        - List of patterns used by the module
+
+See Also:       DSMSong, DSMInst, DSMLoad.
+
+
+DSMSong structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  DSMSong = record
+                    SongName    : array [0..27] of char;
+                    Version     : word;
+                    Flags       : word;
+                    Pad         : dword;
+                    NumOrders   : word;
+                    NumSamples  : word;
+                    NumPatterns : word;
+                    NumChannels : word;
+                    GlobalVolume: byte;
+                    MasterVolume: byte;
+                    InitTempo   : byte;
+                    InitBPM     : byte;
+                    ChanMap     : array [0..Pred(MAXTRACKS)] of byte;
+                    Orders      : array [0..Pred(MAXORDERS)] of byte;
+                  end;
+
+Function:       This structure holds information about the module like
+                the amount of samples, patterns, orders, etc. This is
+                the main body of the music module, which uses the other
+                resources, like the samples and patterns, to interpret
+                and playback the music theme.
+
+Fields:         SongName    - Name of the music module song
+                Version     - Module file format
+                Flags       - Module flags
+                NumOrders   - Length of the order list
+                NumSamples  - Number of sample instruments
+                NumPatterns - Number of pattern sheets
+                GlobVolume  - Global music volume
+                MastVolume  - Master volume
+                InitTempo   - Initial tempo value
+                InitBPM     - Initial BPM value
+                ChanMap     - Initial track's panning values
+                Orders      - Order list
+
+See Also:       DSM, DSMLoad.
+
+
+DSMInst structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  DSMInst = record
+                    FileName    : array [0..12] of char;
+                    Flags       : word;
+                    Volume      : byte;
+                    Length      : dword;
+                    LoopStart   : dword;
+                    LoopEnd     : dword;
+                    Address     : pointer;
+                    MidCRate    : word;
+                    Period      : word;
+                    SampleName  : array [0..27] of char;
+                  end;
+
+Function:       DSMInst is a structure which holds all the information
+                about an sample instrument. You can load individual
+                samples from disk using DSMLoadSample.
+                The sample bit flags are defined as follows:
+
+                Constant    Value   Meaning
+                ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                INST_LOOPED  $01    Looping enabled
+                INST_SIGNED  $02    Signed samples
+                INST_PACKED  $04    Packed samples
+
+Fields:         FileName    - File name of the sample instrument
+                Flags       - Sample bit flags.
+                Volume      - Default volume
+                Length      - Length of the sample
+                LoopStart   - Loop start point
+                LoopEnd     - Loop end point
+                Address     - Used internally to hold the address of
+                              the raw sample data in system memory
+                              or soundcard memory.
+                MidCRate    - Middle-C frequency finetune value
+                Period      - Default period value
+                SampleName  - Name of the sample instrument
+
+See Also:       DSM, DSMLoad, DSMLoadSample, DSMPlaySample.
+
+
+DSMCard structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  DSMCard = record
+                    CardID      : byte;
+                    Flags       : byte;
+                    IOAddr      : word;
+                    IRQNum      : byte;
+                    DRQNum      : byte;
+                    MixRate     : word;
+                  end;
+
+Function:       DSMCard holds the soundcard configuration parameters. This
+                structure is required by DSMInit to initialize the sound
+                system. Here is the list of supported soundcards:
+
+                Constant    Value   Soundcard Device
+                ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+                ID_NONE     0       None
+                ID_SB       1       Sound Blaster
+                ID_SB201    2       Sound Blaster 2.01
+                ID_SBPRO    3       Sound Blaster Pro
+                ID_SB16     4       Sound Blaster 16
+                ID_GUS      5       Gravis Ultrasound
+
+Fields:         CardID      - Soundcard ID number
+                IOAddr      - I/O port address
+                IRQNum      - IRQ line
+                DRQNum      - DMA channel
+                MixRate     - Mixing rate
+
+See Also:       DSMInit, DSMLoadSetup, DSMSaveSetup.
+
+
+DSMMusicInfo structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  DSMMusicInfo = record
+                    ActiveTracks  : word;
+                    Tracks        : array [0..Pred(MAXTRACKS)] of Track;
+                    OrderPosition : byte;
+                    OrderLength   : byte;
+                    PatternNumber : byte;
+                    PatternRow    : byte;
+                    BreakFlag     : byte;
+                    Tempo         : byte;
+                    TempoCount    : byte;
+                    BPM           : byte;
+                    CardStatus    : word;
+                    PlayStatus    : word;
+                    SongPtr       : pointer;
+                    SyncMark      : byte;
+                  end;
+
+Function:       This structure is used internally by the system to keep
+                track of everything that is needed to play a music module.
+                You can access the static instance of this structure used
+                by the system using the function DSMGetMusicInfo.
+
+Fields:         ActiveTracks    - Number of active tracks
+                Tracks          - Tracks data
+                OrderPosition   - Current playing position
+                OrderLength     - Length of the order list
+                PatternNumber   - Current playing pattern
+                PatternRow      - Current pattern row
+                BreakFlag       - Flag used to break patterns
+                                  and for jump position commands
+                Tempo           - Current speed of the music
+                BPM             - Current BPM of the music
+                SyncMark        - The last synchronization mark
+                                  encountered in the patterns
+                SongPtr         - Address of the playing module
+
+See Also:       DSMGetMusicInfo, Track.
+
+
+Track structure
+ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ
+Declaration:    type
+                  Track = record
+                    NoteEvent   : word;
+                    VolumeEvent : byte;
+                    Note        : byte;
+                    Sample      : byte;
+                    Volume      : byte;
+                    Effect      : word;
+                    Period      : word;
+                    EQBar       : byte;
+                    Reserved    : array [...] of byte;
+                  end;
+
+Function:       Track is a structure which hold all the information of
+                each music track channel. There is an array of Tracks
+                in the DSMMusicInfo structure which is used by the
+                system to interpret the music patterns.
+
+Fields:         NoteEvent   - Last note and sample readed from the patterns
+                VolumeEvent - Last volume field readed from the patterns
+                Note        - Note index number
+                Sample      - Sample instrument number
+                Volume      - Volume level
+                Effect      - Effect command
+                Period      - Period value
+                EQBar       - Equalizer level
+
+See Also:       DSMMusicInfo.
+
+
+
