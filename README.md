@@ -45,11 +45,9 @@ which is available these days by googling. In general:
 
 ## External Libraries
 
-* [**DSIK**](LIBS/DSIK) - we used the Digital Sound Interface Kit (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. This was a 
-very cool library which supported 4-channel MODs in the shareware version, and 16-channel in the registered version. I don't know where
-Carlos is now on the internet, but there are places you can google to download the full package. The music for all games started out as a
-MOD file, and was converted into a DSM file for DSIK. You can convert it back again with [OpenMPT](https://openmpt.org/download) if that's 
-the sort of thing you'd want to do.
+* [**DSIK**](LIBS/DSIK) - we used the Digital Sound Interface Kit (C) 1994 Carlos Hasan, for playing MOD-like music files, and sound effects. 
+The music for all games started out as a MOD file, and was converted into a DSM file for DSIK. You can convert it back again with 
+[OpenMPT](https://openmpt.org/download) if that's the sort of thing you'd want to do - and you can also sequence new MOD files with it.
 
 ## Our own Libraries
 
