@@ -18,12 +18,12 @@ and asked if I could still pay for a registered version of the Pascal version. H
 sending me the full version without requesting payment - by that time, most of the computing world
 had moved on from MS-DOS games already.
 
-In the spirit of that, I have included in this repo what Carlos freely mailed me in this repo, unchanged,
+In the spirit of that, I have included in this repo what Carlos freely mailed me, unchanged,
 (including the licence which officially states that I shouldn't be giving this away - not in 1994 at least).
-I have attempted to contact Carlos on all previous emails to ask formal permission for this, but I've not
-been able to track me down. I hope that after some 20 years, this is a reasonable thing to do for the sake
-of preservation of memories, and of good software. But if anyone (including Carlos) should find this page
-and prefer me to do something different, I am very willing to do so.
+I have attempted to contact Carlos on all previous emails to ask formal permission for this, but all have
+bounced, and I've not been able to track Carlos down. I hope that after some 20 years, putting this code online
+is a reasonable thing to do for the sake of preservation of memories, and of good software. But if anyone (including
+Carlos) should find this page and prefer me to do something different, I am very willing to do so.
 
 I do not, unfortunately, have any code for the C version, beyond those you can download online from the
 links above.
